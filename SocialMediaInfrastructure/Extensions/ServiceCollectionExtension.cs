@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SocialMediaDomain.Interfaces;
 using SocialMediaInfrastructure.Persistence;
 using SocialMediaInfrastructure.Repositories;
+using SocialMediaInfrastructure.Services;
 
 namespace SocialMediaInfrastructure.Extensions;
 
@@ -16,5 +17,7 @@ public static class ServiceCollectionExtension
             options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
 
         services.AddScoped<IPostsRepository, PostsRepository>();
+
+        services.AddScoped<IPostAuthorizationService, PostAuthorizationService>();
     }
 }
