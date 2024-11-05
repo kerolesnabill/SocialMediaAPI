@@ -1,12 +1,11 @@
+using SocialMediaAPI.Extensions;
+using SocialMediaDomain.Entities;
 using SocialMediaInfrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddPresentation();
 builder.Services.AddInfrastructure(builder.Configuration);
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -17,6 +16,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapGroup("api/users")
+    .WithTags("Users")
+    .MapIdentityApi<User>();
 
 app.UseAuthorization();
 
