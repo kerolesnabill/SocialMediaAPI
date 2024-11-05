@@ -1,4 +1,5 @@
 using SocialMediaAPI.Extensions;
+using SocialMediaAPI.Middlewares;
 using SocialMediaApplication.Extensions;
 using SocialMediaDomain.Entities;
 using SocialMediaInfrastructure.Extensions;
@@ -10,6 +11,8 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

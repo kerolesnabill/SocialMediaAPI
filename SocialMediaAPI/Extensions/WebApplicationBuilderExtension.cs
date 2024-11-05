@@ -1,4 +1,5 @@
-﻿using SocialMediaDomain.Entities;
+﻿using SocialMediaAPI.Middlewares;
+using SocialMediaDomain.Entities;
 using SocialMediaInfrastructure.Persistence;
 
 namespace SocialMediaAPI.Extensions;
@@ -13,5 +14,7 @@ public static class WebApplicationBuilderExtension
 
         builder.Services.AddIdentityApiEndpoints<User>()
             .AddEntityFrameworkStores<SocialMediaDbContext>();
+
+        builder.Services.AddScoped<ErrorHandlingMiddleware>();
     }
 }

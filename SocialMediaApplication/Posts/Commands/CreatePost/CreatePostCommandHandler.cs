@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using SocialMediaApplication.Users;
 using SocialMediaDomain.Constants;
 using SocialMediaDomain.Entities;
+using SocialMediaDomain.Exceptions;
 using SocialMediaDomain.Interfaces;
 
 namespace SocialMediaApplication.Posts.Commands.CreatePost;
@@ -25,7 +26,7 @@ public class CreatePostCommandHandler(ILogger<CreatePostCommandHandler> logger,
 
         bool isAuthorized = postAuthorizationService.Authorize(post, ResourceOperation.Create);
         if (!isAuthorized)
-            throw new Exception(); // I will edit it later
+            throw new ForbidException();
 
         var postId = await postsRepository.Create(post);
         return postId;
