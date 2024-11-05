@@ -1,3 +1,4 @@
+using Serilog;
 using SocialMediaAPI.Extensions;
 using SocialMediaAPI.Middlewares;
 using SocialMediaApplication.Extensions;
@@ -13,6 +14,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())
 {

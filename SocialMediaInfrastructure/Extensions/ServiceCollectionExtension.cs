@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SocialMediaDomain.Entities;
 using SocialMediaDomain.Interfaces;
 using SocialMediaInfrastructure.Persistence;
 using SocialMediaInfrastructure.Repositories;
@@ -15,6 +16,9 @@ public static class ServiceCollectionExtension
         var connectionString = configuration.GetConnectionString("SocialMediaDb");
         services.AddDbContext<SocialMediaDbContext>(
             options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
+
+        services.AddIdentityApiEndpoints<User>()
+                .AddEntityFrameworkStores<SocialMediaDbContext>();
 
         services.AddScoped<IPostsRepository, PostsRepository>();
 

@@ -4,7 +4,7 @@ using SocialMediaDomain.Entities;
 
 namespace SocialMediaInfrastructure.Persistence;
 
-public class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> options) 
+internal class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> options) 
         : IdentityDbContext<User>(options)
 {
     internal DbSet<Post> Posts { get; set; }
