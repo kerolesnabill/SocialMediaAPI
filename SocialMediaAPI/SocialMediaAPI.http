@@ -1,10 +1,29 @@
-@SocialMediaAPI_HostAddress = http://localhost:5161
+@SocialMediaAPI_HostAddress = https://localhost:7245
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ5QxzkPkTdZ-LRb2DelzqZa53MogNHMrcgu_asDFlaC_jLAppFzfKazXtS5oOYV0RkltvOPVPXVJGgvxVm9Gq1qQYR01RlDCrX2CnojAe0Bx3Ch6-HEgwYyl7Ws6PJOZPMEo2MPtaPRyn_3IkOXrR3-m6gPMNu-ZD8vGLsdEiCceZr05xwToyeuN6hkV0lJdIXDvDkVr6xDaJ1FsnsLF9LNidrMmR5H_caogJzFHErh95uPm9TCk6bEg9zaarPZq70uUyLMXBoxvsVVDKYXXwRFbatW0zG-sIsdHwTjfbkhsgUH8Z88vrOJoBz4jBTe-lmG7nnESRKS553Focw3OKLEKjlBtPKlIYRNFj1cXPz1ChIXr8ft9GtGd_BYRW4_owTgTZfkT5KMACpzaT-EnLaY6zW_kZntKkFveXei95lwyf3Y9ag2WujyFDblUvLe8WCwjJ1Vg5wYH5gd9PoVcKxw61PFGoln7bAta1zoaWxyF5cnhB_e4zkY7MuCkUvjJt0gkSUkqEcRJykZR4UuNofhNKzoWQgUDCakOQTwlk6LT6zl8JXGPqBfHKeJggVdch9H47peSTFt_Iwjb_JYPW0-13CFPcg_gKWC1UGUmPYpoP8vvJXACkxTRYvSMWL-uk-Xvvg3JKymEBLOgEZ9McwW
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
 {
   "email": "k@k.com",
   "password": "Password1!"
+}
+
+###
+Post {{SocialMediaAPI_HostAddress}}/api/users/login
+Content-Type: application/json
+{
+  "email": "k@k.com",
+  "password": "Password1!"
+}
+
+###
+
+POST {{SocialMediaAPI_HostAddress}}/api/posts
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "content" : "Some content"
 }
 
 ###

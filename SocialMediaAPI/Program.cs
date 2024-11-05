@@ -1,10 +1,12 @@
 using SocialMediaAPI.Extensions;
+using SocialMediaApplication.Extensions;
 using SocialMediaDomain.Entities;
 using SocialMediaInfrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddPresentation();
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
