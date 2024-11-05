@@ -1,6 +1,10 @@
 @SocialMediaAPI_HostAddress = http://localhost:5161
 
-GET {{SocialMediaAPI_HostAddress}}/
-Accept: application/json
+Post {{SocialMediaAPI_HostAddress}}/api/users/register
+Content-Type: application/json
+{
+  "email": "k@k.com",
+  "password": "Password1!"
+}
 
 ###
