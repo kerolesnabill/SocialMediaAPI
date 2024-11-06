@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using SocialMediaApplication.Users;
 
@@ -13,6 +14,9 @@ public static class ServiceCollectionExtensions
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
 
         services.AddAutoMapper(applicationAssembly);
+
+        services.AddValidatorsFromAssembly(applicationAssembly)
+            .AddFluentValidationAutoValidation();
 
         services.AddScoped<IUserContext, UserContext>();
         services.AddHttpContextAccessor();
