@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Posts.Commands.CreatePost;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SocialMediaAPI.Controllers;
 
@@ -17,6 +18,6 @@ public class PostsController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
     {
         var postId = await mediator.Send(command);
-        return NoContent();
+        return Created();
     }
 }
