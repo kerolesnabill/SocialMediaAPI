@@ -8,6 +8,13 @@ public class PostsProfile : Profile
 {
     public PostsProfile()
     {
-        CreateMap<CreatePostCommand, Post>();
+        CreateMap<CreatePostCommand, Post>()
+            .ForMember(p => p.Content, options =>
+                options.MapFrom(c => new PostContent
+                {
+                    Title = c.Title,
+                    Description = c.Description,
+                    Images = c.Images,
+                }));
     }
 }

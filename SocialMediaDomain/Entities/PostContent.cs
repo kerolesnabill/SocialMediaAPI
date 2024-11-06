@@ -1,8 +1,6 @@
-﻿using MediatR;
+﻿namespace SocialMediaDomain.Entities;
 
-namespace SocialMediaApplication.Posts.Commands.CreatePost;
-
-public class CreatePostCommand : IRequest<int>
+public class PostContent
 {
     public string? Title { get; set; }
     public string? Description { get; set; }

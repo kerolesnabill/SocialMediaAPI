@@ -1,5 +1,5 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6eJsjeOgpemxUwQ5NWpi_az_j0pbAA7ruTxHLEEByD5o4ENjk4Iz1JDnUxDHz8OB8DZkTo0aWQDAxD754Rd4vL5eIy8PxYDA0-IFfFTlNr_H31gY59sNecHKQsCIAvJZX7MDlwUo877N93J7TxU5HmGnmHOOlxIt0ra7f9l4G6F5IiInQQyowEVeKMbR0pnN6hLNgzxL8TIDd-c0rTA0y3-gPQnww3c7ZeQQTUVTeWLrNM55_d68ab0JJqqIhqICjtC2iGa9UgTAm_H_EHbzoeeinWhQoEDJNv16pIWCLIdSPx4U0AILvdrdYXNZrqnRpnIZHzX4xs4TVsgykG2bdRQz95HBtcnwRuzP3y2W24Kpi5V6SvPNHAdcezxNQKWSafSPoGu5PaO4cGJtI9Y7SI3WQn9AjDro7PaL47-3ZGMHOI-8ra75yXHbvMfOsVE04a9Jh5GciVtapRvPQQR_U_JibZC1cQ9oEOJXMY0U_Brhfwd-r6T1IO6d9L-yKyWNoONh3Mxel4mBKxi3GZM7OXZS0Qr6y6aX6r5bYzcEVVv8oVG-_YciQ9vQonqlbTBZVswVCj22XmX6qzonNoJzRuGqrCMco9t0jlovTabjd5q4pYEsI5FvNF1Y9AVqHc-93A-_DrsjUcBl_GBW4ZVEoD
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ4GuCSBrM6czLcq4t8zAewfeSndk4u4j7Pz2W0-JuUQTB1UJPo79iWBIskaxzfH7_kH-UFGhqVVWCF-vAvJ32xsza1GYl4FtiOPm-pJOu6R5cMyi9_Tc8KP6q20TLHN15FWi7bMyuS_GJYWeoYayJSORaUTw8gFuiDs3iI7Mt3cCNqC3wviHr3paOoX7Gmb5aIIHP4yIco3b_pgSC-nKDtGatwlTHzdov-aFNh_Ifbbr0uyM8kJK2RnGpSxJxBNxCugisxksyaZQfrz_Wmn_SYelpVRmRZi9TOWD2R_55F50abVeBgkvH9IXC7ybSVT1bJR2-kwMYd3C5pi9oujpmejdn_B_9DfgQK7iVrQ06Igckx37HyNA9fUfR3eVufwegeTskPhXgYMd3spmIApRWjSuIpU-_DRHUAoJx4wHY-kHiynz37M-mYKf2xiXoeWILA_RHDysAvxSJOvb611XGgqTYgJz_nX21EjlHkB2KxlQnq6qBwdqP3boBHIvSTSWZhdoCfqokMCWtGz6KurKsFNqTrT5X8PpMQpluuL9o_86YNTgRN2bzIgBkHRcMVldsBRBs75L7sLjVRua4fzUH5VN3aqkR4Ui87oyV3r_K3Pl-JlySZbg_HS4Z18W7LL0DOmVmGfzbq38r9aQqVQ40yo
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
@@ -23,7 +23,13 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "content" : "Some content"
+  "Title": "post title",
+  "Description": "post description",
+  "Images" : [
+    "image1",
+    "image2",
+    "image3"
+  ]
 }
 
 ###
