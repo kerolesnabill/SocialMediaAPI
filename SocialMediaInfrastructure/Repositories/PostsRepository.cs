@@ -25,4 +25,10 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         var post = await dbContext.Posts.FirstOrDefaultAsync(p => p.Id == id);
         return post;
     }
+
+    public async Task UpdateAsync(Post post)
+    {
+        dbContext.Update(post);
+        await dbContext.SaveChangesAsync();
+    }
 }

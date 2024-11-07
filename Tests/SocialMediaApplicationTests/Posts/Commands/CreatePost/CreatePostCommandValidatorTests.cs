@@ -2,7 +2,7 @@
 using SocialMediaApplication.Posts.Commands.CreatePost;
 using Xunit;
 
-namespace SocialMediaApplication.Posts.Commands.CreatePost;
+namespace SocialMediaApplicationTests.Posts.Commands.CreatePost;
 
 public class CreatePostCommandValidatorTests
 {

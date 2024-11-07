@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SocialMediaApplication.Posts.Commands.CreatePost;
+using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaDomain.Entities;
 
 namespace SocialMediaApplication.Posts.Dtos;
@@ -15,6 +16,15 @@ public class PostsProfile : Profile
                     Title = c.Title,
                     Description = c.Description,
                     Images = c.Images.ToList(),
+                }));
+
+        CreateMap<UpdatePostCommand, Post>()
+            .ForMember(p => p.Content, options =>
+                options.MapFrom(c => new PostContent
+                {
+                    Title = c.Title,
+                    Description = c.Description,
+                    Images = c.Images,
                 }));
 
         CreateMap<Post, PostDto>()

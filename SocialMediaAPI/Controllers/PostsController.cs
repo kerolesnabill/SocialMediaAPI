@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Posts.Commands.CreatePost;
 using SocialMediaApplication.Posts.Commands.DeletePost;
+using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaApplication.Posts.Queries.GetPostById;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SocialMediaAPI.Controllers;
 
@@ -40,6 +40,19 @@ public class PostsController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> DeletePost([FromRoute] int id)
     {
         await mediator.Send(new DeletePostCommand(id));
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> UpdatePost([FromRoute] int id, UpdatePostCommand command)
+    {
+        command.Id = id;
+        await mediator.Send(command);
         return NoContent();
     }
 }

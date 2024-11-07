@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
 using Newtonsoft.Json;
 using SocialMediaApplication.Posts.Commands.CreatePost;
+using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaApplication.Users;
 using SocialMediaDomain.Constants;
 using SocialMediaDomain.Entities;
@@ -128,5 +129,28 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
         var response = await client.DeleteAsync($"api/posts/{id}");
 
         Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+    }
+
+    [Fact()]
+    public async Task UpdatePost_ForValidRequest_Return204NoContent()
+    {
+        var id = 1;
+        var post = new Post() { Id = id , AuthorId = "AuthorId" };
+
+        _postRepository.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(post);
+        _postRepository.Setup(r => r.UpdateAsync(post));
+
+        var client = _factory.CreateClient();
+        var command = new UpdatePostCommand
+        {
+            Title = "Test Post",
+            Description = "This is a test post."
+        };
+        var jsonContent = JsonConvert.SerializeObject(command);
+        var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+        var response = await client.PutAsync($"api/posts/{id}", httpContent);
+
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
 }

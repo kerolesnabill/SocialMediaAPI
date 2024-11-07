@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SocialMediaApplication.Posts.Commands.CreatePost;
+using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaApplication.Posts.Dtos;
 using SocialMediaDomain.Entities;
 using Xunit;
@@ -29,6 +30,24 @@ public class PostsProfileTests
             Title = "Title",
             Description = "Description",
             Images  = ["image1", "image2"]
+        };
+
+        var result = _mapper.Map<Post>(command);
+
+        Assert.NotNull(result);
+        Assert.Equal(command.Title, result.Content.Title);
+        Assert.Equal(command.Description, result.Content.Description);
+        Assert.Equal(command.Images, result.Content.Images);
+    }
+
+    [Fact()]
+    public void CreateMap_ForUpdatePostCommandToPost_MapsCorrectly()
+    {
+        var command = new UpdatePostCommand()
+        {
+            Title = "Title",
+            Description = "Description",
+            Images = ["image1", "image2"]
         };
 
         var result = _mapper.Map<Post>(command);
