@@ -14,7 +14,7 @@ public class PostsProfile : Profile
                 {
                     Title = c.Title,
                     Description = c.Description,
-                    Images = c.Images,
+                    Images = c.Images.ToList(),
                 }));
 
         CreateMap<Post, PostDto>()

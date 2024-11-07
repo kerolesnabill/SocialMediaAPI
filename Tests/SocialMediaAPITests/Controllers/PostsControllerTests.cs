@@ -35,14 +35,14 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
                     _ => _userContext.Object));
             });
         });
+
+        var fakeUser = new CurrentUser("1", "username", "test@test.com");
+        _userContext.Setup(u => u.GetCurrentUser()).Returns(fakeUser);
     }
 
     [Fact()]
     public async Task CreatePost_ForValidRequest_Return201Created()
     {
-        var fakeUser = new CurrentUser("1", "username", "test@test.com");
-        _userContext.Setup(u => u.GetCurrentUser()).Returns(fakeUser);
-
         _postRepository.Setup(r => r.Create(It.IsAny<Post>())).ReturnsAsync(1);
 
         var client = _factory.CreateClient();
@@ -57,6 +57,33 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
 
         var response = await client.PostAsync("api/posts", httpContent);
 
-        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+    }
+
+    [Fact()]
+    public async Task GetPostById_ForValidRequest_Return200Ok()
+    {
+        var id = 1;
+        _postRepository.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(new Post());
+
+        var client = _factory.CreateClient();
+
+        var response = await client.GetAsync($"api/posts/{id}");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+
+    [Fact()]
+    public async Task GetPostById_ForNonExistingPost_Return404NotFound()
+    {
+        var id = 0;
+        _postRepository.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(null as Post);
+
+        var client = _factory.CreateClient();
+
+        var response = await client.GetAsync($"api/posts/{id}");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 }

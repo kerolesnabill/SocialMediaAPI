@@ -1,4 +1,5 @@
-﻿using SocialMediaDomain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SocialMediaDomain.Entities;
 using SocialMediaDomain.Interfaces;
 using SocialMediaInfrastructure.Persistence;
 
@@ -11,5 +12,11 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         dbContext.Posts.Add(entity);
         await dbContext.SaveChangesAsync();
         return entity.Id;
+    }
+
+    public async Task<Post?> GetByIdAsync(int id)
+    {
+        var post = await dbContext.Posts.FirstOrDefaultAsync(p => p.Id == id);
+        return post;
     }
 }

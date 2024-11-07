@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Posts.Commands.CreatePost;
+using SocialMediaApplication.Posts.Queries.GetPostById;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace SocialMediaAPI.Controllers;
@@ -17,7 +18,16 @@ public class PostsController(IMediator mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
     {
-        var postId = await mediator.Send(command);
-        return Created();
+        var id = await mediator.Send(command);
+        return CreatedAtAction(nameof(GetPostById), new { id }, null);
+    }
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetPostById([FromRoute] int id)
+    {
+        var post = await mediator.Send(new GetPostByIdQuery(id));
+        return Ok(post);
     }
 }
