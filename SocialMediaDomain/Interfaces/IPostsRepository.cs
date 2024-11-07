@@ -6,4 +6,5 @@ public interface IPostsRepository
 {
     Task<int> Create(Post entity);
     Task<Post?> GetByIdAsync(int id);
+    Task Delete(Post entity);
 }

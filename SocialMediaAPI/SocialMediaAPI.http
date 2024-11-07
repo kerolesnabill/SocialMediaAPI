@@ -1,10 +1,10 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6DsHkvRL9GVKUQVYJa0l1tBkkkB9cCF5WPNtBTvIcKVsM9n5XkNHoh1HsESWoULzh6RPxXPYvrmcrdjeme77zVCWjO9rdeN0GCNCk_aCDJuBnLw5uS4-I7Rxc_4GmU5ruo5gmLbddBQGLrsyVqNyl1L_blOA63Ob2Xpp1Hqiz-y0WR6Xg9DXj-NzjutB7WIJL0WhsKTRujuuKkXpUlxn8PukGqByReIcBOQWt-V1SlKRd38BLk18OJS_QHv5WCda5Rad6ilDk48JET61fF6LpgvE0LlR9I9YD6E3JxHYrfidOqEUJNiq4GqQau5xoQ0DDkbgJbKOYExYN49ORYRnOEXCOATcXYaRDbNHK6DS4GNulWvepzAGGI6I7uPv0msLHk2qJbLbDEE0DxTA80iBLRAZ2Dng_Dnz9z_3F1ZyVjRdGyCi1oTULbD42or01IZ4RcFOURxGlFIVwclEr8dotAn4FltBdMm8_kyuEePI3b245LINrX7J4D3s_Fi1lSXCdJGCTlaZsQTNOUc273lL2G7d4foOwZR7xfEah9dzMVGuBeYzMlOkP43IlVzvgLUGUKHHYe1ECX8_AZdUnc9TyGVFGKQPu98gWOsaISe0K_rK8tGkG7sp6q3GHuDgB-rcFdRlwaXs5igblVax00nbar
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ5VkbhO3crQaDE4UeOICnYqvuV0dZMkO3C0KAV4bgaHtfMq8arWITzzDuDXqsi8DEct0d38VdF7P20Jj6XjeeoUTinPHX1lOHRI6bLfPaTED8nYBM4ETsaOhZDx8WhcrSaUh07PvV1eq-FYsaDIUfbmSP2NZkSx_2-if9tjRt0mPvL5h4Ip1mKPxBCuLEibdLnohbEyk-NK2ulGuwi4jgNyQRgYx4-JnffIIpGom744Sg-9D1T_jycfitGXtsof6HovOOsd3B4232XfJokpGHOWIMmF_ShD58010DIES0vgNtMfw7bd1G0yNtI065zYIeP6Ndmxslx5TiIyp0NKr8pjbDk95MPlIQ-o5QdGPP7p69PP5YkkrdmDnxMpF1gdioYsw39Bq06YhUjsOY9uGfvernaYPrqapkNvok8W6Z5OqTpcDNeCfHDoX2ceKXCr338UgancIoPTsZb_WlTi5W8jn0S7Ibp-tVCrFXXHAeEM3S_ywsGtzwQfAOQeZHgYMLnQiIP2FwGnHU4ARr2bMljmnfwUxvU-3zuJAJ8bxFWVWcUj4z2dQ9rfHe5UO7XLYfFEv990fxqzUOETFYBuSyfAl02_CyVZMeYZ6pltdERPec4p6dlPd5IK-CXmcqr5h2XqJJA9xSkQVyWalxUkKQfW
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
 {
-  "email": "k@k.com",
+  "email": "k2@k.com",
   "password": "Password1!"
 }
 
@@ -31,9 +31,13 @@ Authorization: Bearer {{token}}
     "image3"
   ]
 }
-
 ###
 
 GET {{SocialMediaAPI_HostAddress}}/api/posts/88
+Authorization: Bearer {{token}}
+###
+
+
+DELETE {{SocialMediaAPI_HostAddress}}/api/posts/29
 Authorization: Bearer {{token}}
 ###

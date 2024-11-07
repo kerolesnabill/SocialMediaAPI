@@ -14,6 +14,12 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         return entity.Id;
     }
 
+    public async Task Delete(Post entity)
+    {
+        dbContext.Remove(entity);
+        await dbContext.SaveChangesAsync();
+    }
+
     public async Task<Post?> GetByIdAsync(int id)
     {
         var post = await dbContext.Posts.FirstOrDefaultAsync(p => p.Id == id);

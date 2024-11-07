@@ -7,6 +7,7 @@ using Moq;
 using Newtonsoft.Json;
 using SocialMediaApplication.Posts.Commands.CreatePost;
 using SocialMediaApplication.Users;
+using SocialMediaDomain.Constants;
 using SocialMediaDomain.Entities;
 using SocialMediaDomain.Interfaces;
 using System.Net;
@@ -36,7 +37,7 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
             });
         });
 
-        var fakeUser = new CurrentUser("1", "username", "test@test.com");
+        var fakeUser = new CurrentUser("AuthorId", "username", "test@test.com");
         _userContext.Setup(u => u.GetCurrentUser()).Returns(fakeUser);
     }
 
@@ -85,5 +86,47 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
         var response = await client.GetAsync($"api/posts/{id}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact()]
+    public async Task DeletePost_ForValidRequest_Return204NoContent()
+    {
+        var id = 1;
+        var post = new Post() { Id = id, AuthorId = "AuthorId" };
+        _postRepository.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(post);
+        _postRepository.Setup(r => r.Delete(post));
+
+        var client = _factory.CreateClient();
+
+        var response = await client.DeleteAsync($"api/posts/{id}");
+
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+    }
+
+    [Fact()]
+    public async Task DeletePost_ForNonExistingPost_Return404NotFound()
+    {
+        var id = 0;
+        _postRepository.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(null as Post);
+
+        var client = _factory.CreateClient();
+
+        var response = await client.DeleteAsync($"api/posts/{id}");
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+
+    [Fact()]
+    public async Task DeletePost_ForNotValidAuthor_Return403Forbidden()
+    {
+        var id = 0;
+        var post = new Post() { Id = id , AuthorId = "DifferentAuthorId" };
+        _postRepository.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(post);
+
+        var client = _factory.CreateClient();
+
+        var response = await client.DeleteAsync($"api/posts/{id}");
+
+        Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
     }
 }

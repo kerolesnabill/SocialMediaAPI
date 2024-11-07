@@ -21,7 +21,7 @@ internal class PostAuthorizationService(ILogger<PostAuthorizationService> logger
             return true;
         }
 
-        if (resourceOperation == ResourceOperation.Delete || resourceOperation == ResourceOperation.Update
+        if ((resourceOperation == ResourceOperation.Delete || resourceOperation == ResourceOperation.Update)
                 && user.Id == post.AuthorId)
         {
             logger.LogInformation("Post author - successful authorization");
