@@ -15,7 +15,7 @@ public class PostsProfile : Profile
                 {
                     Title = c.Title,
                     Description = c.Description,
-                    Images = c.Images.ToList(),
+                    Images = c.Images,
                 }));
 
         CreateMap<UpdatePostCommand, Post>()

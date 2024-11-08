@@ -20,10 +20,23 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<Post>> GetAllAsync()
+    public async Task<(IEnumerable<Post>, int)> GetAllAsync(int pageSize, int pageNumber, string? searchPhase)
     {
-        var posts =  await dbContext.Posts.ToListAsync();
-        return posts;
+        searchPhase = searchPhase?.ToLower();
+
+        var baseQuery = dbContext.Posts
+            .Where(p => searchPhase == null ||
+                   (p.Content.Title != null && p.Content.Title.ToLower().Contains(searchPhase)) ||
+                   (p.Content.Description != null && p.Content.Description.ToLower().Contains(searchPhase)));
+
+        var totalCount = await baseQuery.CountAsync();
+
+        var posts = await baseQuery
+            .Skip(pageSize * (pageNumber - 1))
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (posts, totalCount);
     }
 
     public async Task<Post?> GetByIdAsync(int id)

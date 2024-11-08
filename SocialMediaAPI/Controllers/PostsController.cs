@@ -26,9 +26,9 @@ public class PostsController(IMediator mediator) : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetPostById()
+    public async Task<IActionResult> GetAllPosts([FromQuery] GetAllPostsQuery query)
     {
-        var post = await mediator.Send(new GetAllPostsQuery());
+        var post = await mediator.Send(query);
         return Ok(post);
     }
 

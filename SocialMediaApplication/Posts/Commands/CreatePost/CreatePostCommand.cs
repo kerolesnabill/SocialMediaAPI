@@ -6,5 +6,5 @@ public class CreatePostCommand : IRequest<int>
 {
     public string? Title { get; set; }
     public string? Description { get; set; }
-    public IEnumerable<string>? Images { get; set; }
+    public List<string>? Images { get; set; }
 }

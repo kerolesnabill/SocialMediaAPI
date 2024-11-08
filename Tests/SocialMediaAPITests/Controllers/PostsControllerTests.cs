@@ -7,6 +7,7 @@ using Moq;
 using Newtonsoft.Json;
 using SocialMediaApplication.Posts.Commands.CreatePost;
 using SocialMediaApplication.Posts.Commands.UpdatePost;
+using SocialMediaApplication.Posts.Dtos;
 using SocialMediaApplication.Users;
 using SocialMediaDomain.Constants;
 using SocialMediaDomain.Entities;
@@ -60,6 +61,19 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
         var response = await client.PostAsync("api/posts", httpContent);
 
         Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+    }
+
+    [Fact()]
+    public async Task GetAllPosts_WithValidRequest_Returns200Ok()
+    {
+        IEnumerable<Post> posts = [new() { Id = 1 }, new() { Id = 2 }];
+        _postRepository.Setup(r => r.GetAllAsync(15, 1, null)).ReturnsAsync((posts, 2));
+
+        var client = _factory.CreateClient();
+
+        var response = await client.GetAsync("api/posts");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact()]

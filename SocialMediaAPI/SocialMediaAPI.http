@@ -1,5 +1,5 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ7ZTVSotNfn4NmrU0kbKcDobQ0wVrOwo6ROBcQwRXHywL97fII8dA_nXswtOOS9w_7qlF5C9nhzdp4gdJditTCaXzODBdW2_3fhYLMv7KL55-aKbpWDAEceiQp7_4Wdbfo1vVUpzrKyQc3TxNWzqD8VX9UZAqGMF_YCg-rhjaigthHcVY-0bAzdcHJPiw0pPZ8_WzMmqeu0FEUtjg6XqCy1VNAjvLSelV51RW68VmZjSUWsm0XBB-y9xyk7Vq-bYLLO6Zg3eIKCOuV2xA_QdJhecs2TJXE3Q-x4EPdLDzU1e5qYmrR7WgKVyiTkwax8W72EM01lXJDO8SjTGPwn-KEpoW9Kpvpb6DrexR_XneFBOGnBu2INCpCqq8Q8R1kJ6kY_OXF0wcBCyKnPKmFxGK6mYFLRKUcUQxkz_a-bumGF34G-NuasOtt5al1WaLjiffRSCPS2H-IonHFKkIVXizpsY6b_Ti9hJuFWXx0qq0EaMHplvXrWnGmsUVmjdA3mee0dCczPx54jEDzogRhGS3wuxRaq_Ix8VdWW-ThNHlwmeWK129t8eeOBFvEcD4g_tb1kUVGC16ckdujrBZrvVEfRPIW8pmWT9LNF2ooehUfzzeGAApCXn83G1_4MLNJx3rPGL3T_fz4HTeJ2UYMmFGKu
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6-p-7Ggsc95WihH64-2565uG87Xsaz6ZxkjtblbgPgEZ7falab76vdjLGDvP5RSXy3V_gUTRLE1UmphfVBRPZ6BJ0Bm1XFKHgGvIhiteJlnnbRAkAyXXUnhnHjemM7Of4fudaDnG-vLboQ1avz8JJNCtxhGZPvERqHY6G9AXHiFjPF8UW2pIS0xBW6vh4idgWEm_mn-fbCOO3FKrPNL597hX5UOsmblChjbBep4f5llQvkR5oc1GhyKgONDUW5bvio0xeOMzNR9GYXCs7KT3bZWuVqe3k-FUkg6_uy-QXUBnos3yI-JrrbK3qWn6qHUI86ww8J-RT_qzKLMMRTnJDE9yX2EEvY0pCiimymfTVUc5Gn5VV0OMp1w3a6lUz1C_v-k10wP5Bl-fZAM4UgR2SkqxtFmPxrbdaRWxAwiH42g7zlbvM7JhvLYxominPAeFl9Y5MZqy40WoIqwzuXEp3d-YG6VwakSFjVI-zGXi3ksfljuZGIsqZfjpX7CN9DaIAqmBjWXnW65DPCbGyhefKn_B-iVyg1pGms_Fca9cU_XffXZAxrtmnOtyCuWiwBbIauOHjq-1AxUYJCt56KhiVr_Y9MDDSf_FCgbUMOGHhfrm8Ne7rlGnhH1gtZ7cuNYSK4gHfJ6Ku2YF4gQgSjjcc_
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
@@ -22,13 +22,8 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "Title": "post title",
-  "Description": "post description",
-  "Images" : [
-    "image1",
-    "image2",
-    "image3"
-  ]
+  "Title": ".....",
+  "Description": "kero description"
 }
 ###
 
@@ -52,9 +47,8 @@ Authorization: Bearer {{token}}
     "image2"
   ]
 }
-
 ###
 
-GET {{SocialMediaAPI_HostAddress}}/api/posts
+GET {{SocialMediaAPI_HostAddress}}/api/posts?pageNumber=2&searchPhase=
 Authorization: Bearer {{token}}
 ###
