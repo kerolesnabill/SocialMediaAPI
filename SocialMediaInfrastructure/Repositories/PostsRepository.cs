@@ -20,6 +20,12 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         await dbContext.SaveChangesAsync();
     }
 
+    public async Task<IEnumerable<Post>> GetAllAsync()
+    {
+        var posts =  await dbContext.Posts.ToListAsync();
+        return posts;
+    }
+
     public async Task<Post?> GetByIdAsync(int id)
     {
         var post = await dbContext.Posts.FirstOrDefaultAsync(p => p.Id == id);

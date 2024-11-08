@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Posts.Commands.CreatePost;
 using SocialMediaApplication.Posts.Commands.DeletePost;
 using SocialMediaApplication.Posts.Commands.UpdatePost;
+using SocialMediaApplication.Posts.Queries.GetAllPosts;
 using SocialMediaApplication.Posts.Queries.GetPostById;
 
 namespace SocialMediaAPI.Controllers;
@@ -21,6 +22,14 @@ public class PostsController(IMediator mediator) : ControllerBase
     {
         var id = await mediator.Send(command);
         return CreatedAtAction(nameof(GetPostById), new { id }, null);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetPostById()
+    {
+        var post = await mediator.Send(new GetAllPostsQuery());
+        return Ok(post);
     }
 
     [HttpGet("{id}")]

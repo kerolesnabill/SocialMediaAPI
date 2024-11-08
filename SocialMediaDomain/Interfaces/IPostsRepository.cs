@@ -8,4 +8,5 @@ public interface IPostsRepository
     Task<Post?> GetByIdAsync(int id);
     Task Delete(Post entity);
     Task UpdateAsync(Post post);
+    Task<IEnumerable<Post>> GetAllAsync();
 }
