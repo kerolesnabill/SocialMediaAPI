@@ -4,5 +4,10 @@ namespace SocialMediaDomain.Entities;
 
 public class User : IdentityUser
 {
+    public string FullName { get; set; } = default!;
+    public string? Bio { get; set; }
+    public string? Picture { get; set; }
+    public DateTime? CreatedAt { get; set; }
+
     public IEnumerable<Post> Posts { get; set; } = [];
 }

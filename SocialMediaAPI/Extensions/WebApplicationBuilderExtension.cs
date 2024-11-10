@@ -30,6 +30,9 @@ public static class WebApplicationBuilderExtension
                         []
                     }
                 });
+
+            // To avoid conflict between identity route and controller route
+            c.ResolveConflictingActions(apiDescriptions => apiDescriptions.Last());
         });
 
         builder.Services.AddScoped<ErrorHandlingMiddleware>();

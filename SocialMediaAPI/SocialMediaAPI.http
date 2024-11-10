@@ -3,8 +3,10 @@
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
-{
-  "email": "k2@k.com",
+{ 
+  "FullName": "Kero",
+  "Username": "Username",
+  "email": "k@k",
   "password": "Password1!"
 }
 ###
@@ -12,7 +14,7 @@ Content-Type: application/json
 Post {{SocialMediaAPI_HostAddress}}/api/users/login
 Content-Type: application/json
 {
-  "email": "k@k.com",
+  "email": "Username",
   "password": "Password1!"
 }
 ###

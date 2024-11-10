@@ -10,5 +10,4 @@ public class Post
 
     public User Author { get; set; } = default!;
     public string AuthorId { get; set; } = default!;
-            
 }
