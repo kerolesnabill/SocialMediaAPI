@@ -24,4 +24,10 @@ internal class UsersRepository(SocialMediaDbContext dbContext) : IUsersRepositor
         var user = await dbContext.Users.Include(u => u.Following).FirstOrDefaultAsync(u => u.Id == id);
         return user;
     }
+
+    public async Task<User?> GetByIdWithFollowersAsync(string id)
+    {
+        var user = await dbContext.Users.Include(u => u.Followers).FirstOrDefaultAsync(u => u.Id == id);
+        return user;
+    }
 }

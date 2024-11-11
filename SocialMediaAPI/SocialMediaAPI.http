@@ -1,5 +1,5 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ4EgHclAvSK4THFpbYMRaL2pfqt3PyR-wumwChEseiGTv0Iy29as-fNsQHsk3PsPsuzOoL3p5QPBW2c2wMIawy8T0wd3f8kHrKmzlZ-59pDaETfR3z37lqFRy6t_yun8mQndM4YFfe1Az_ej-fNEpjdOrJ-r-2TqClT7s6_bZvosV4qAdHWiP4q5lcB6XJqx0eZnhh0Jckvuqbb5gseJwlv9RFuFL5e7xZGSoHv4TLWg0mgbzfT-jjazyEgqNWcpuV943bokwC4_2Hrun51OXQGubl9DVhnVSkzTyEQ3ZbS3YPuWnpCtD9anbWzbYHbGQzTECXKaj54mosi7gX3BeEzE_bbLNxO034k-GkSywRl67Ox3_Y-naGePEOZjqIGHwpLF5ly6Gj4gsx2qd2l8eZWa4qUtT3R4Cp95gP61MAlrfaBxcGBFA50ua1ws1DBPojv32lG65sCNoUS2yFerxcaAdD1XbQZd9sfWmas7fDTQ0Iah8WGeVYo4wKDsdlAyIppTYc_n24EqCd8h2zCXLDeEaJDsyAjhIYQnAaUOj0RT_1ouJkoXfRh_DBgF22QiY3gBO-YcZ354CdQ6TGl0O70ooPTJ1KxC5uicT_suCZeHw9SPifvmNwPYZJ_H_oaaNNOnnGJ_wgcS1KxVc2a8tH2
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ7GkYDfY4mgMVVXVivpm-TPRr9ktXw2ANwHJyvliiiC49Ul1DnOF_70_AEisOHQRQaYxLriKyPu3pnuf_LaSqwE5EU5SPbIbor_uZ1QI9bz4GnjG5NZY5FzQbUKpCUE5kGIhyFRVHbnzXFAnP6Emu47SeUMooU_nM2WYsx65t85Nv6RbDdKbzYgnBsF4pth2A5xwAi-Wdv6I3Un10JMeCaYjeS0MzCHEjj5KJEpvLi-Zq-UVYKySbMiseANjbDCp4zxxxjOFjL8t_qJNxwS6eYFlQxoYu6si5QYfQ1nFZlPvSJXRH-VK2b62RQ50wmiuV8oMheACFS4i6EBeLv68ySOftHzXRr2QWBoAGue1bPz4_m4dijPu2bB3Af1kqOw5tbmtmuyht2kGJn1FCANbugketx75dckU1mmcKBlszfcgWK3_aIZuZrOqVLiIOG8h2izu0lm8PMmzcU6SxU_rEn92dZJJKh2CHupqCOCUvcr8NS7YaEI3NpjEyjhUa7RCvKPL0V5RY1g5Awqqjt0EYxYpsbZb5oYolisvMev1ZYdtwc0ef5OAorllxEyedAa6O2K0B8Lccl3L57YvRMHrC9_Om2sgWGWcCh8qmYcA3uUzsEq-4zqhwmZ1ndFJCREM24ZllVTxghtAejMl3IK6GJE
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
@@ -55,10 +55,18 @@ GET {{SocialMediaAPI_HostAddress}}/api/posts?pageNumber=2&searchPhase=
 Authorization: Bearer {{token}}
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/users/f74769bf-176d-443e-92f8-f9f998942172/follow
+POST {{SocialMediaAPI_HostAddress}}/api/users/8b925374-e647-465c-bfec-7960cae0b856/follow
 Authorization: Bearer {{token}}
 ###
 
 DELETE {{SocialMediaAPI_HostAddress}}/api/users/f74769bf-176d-443e-92f8-f9f998942172/unfollow
+Authorization: Bearer {{token}}
+###
+
+GET {{SocialMediaAPI_HostAddress}}/api/users/e8eb0fc9-ffd4-43c6-a266-ba5d59d5b6a9/followers
+Authorization: Bearer {{token}}
+###
+
+GET {{SocialMediaAPI_HostAddress}}/api/users/e8eb0fc9-ffd4-43c6-a266-ba5d59d5b6a9/following
 Authorization: Bearer {{token}}
 ###

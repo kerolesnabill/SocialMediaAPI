@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Users.Commands.FollowUser;
 using SocialMediaApplication.Users.Commands.RegisterUser;
 using SocialMediaApplication.Users.Commands.UnfollowUser;
+using SocialMediaApplication.Users.Queries.GetUserFollowers;
+using SocialMediaApplication.Users.Queries.GetUserFollowing;
 
 namespace SocialMediaAPI.Controllers;
 
@@ -23,6 +25,24 @@ public class UsersController(IMediator mediator) : ControllerBase
             return Ok();
 
         return BadRequest(result.Errors);
+    }
+
+    [HttpGet("{id}/followers")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetUserFollowers([FromRoute] string id)
+    {
+        var followers = await mediator.Send(new GetUserFollowersQuery(id));
+        return Ok(followers);
+    }
+
+    [HttpGet("{id}/following")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetUserFollowing([FromRoute] string id)
+    {
+        var followers = await mediator.Send(new GetUserFollowingQuery(id));
+        return Ok(followers);
     }
 
     [HttpPost("{id}/follow")]
