@@ -12,4 +12,5 @@ public interface IPostsRepository
     Task<(IEnumerable<Post>, int)> GetAllAsync(int pageSize, int pageNumber, string? searchPhase);
     Task AddLikeAsync(Post post, User user);
     Task RemoveLikeAsync(Post post, User user);
+    Task<int> GetLikesCountAsync(int postId);
 }

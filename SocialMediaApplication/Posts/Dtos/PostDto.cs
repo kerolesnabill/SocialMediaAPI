@@ -11,5 +11,7 @@ public class PostDto
     public DateTime? CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 
+    public int LikesCount { get; set; }
+
     public string AuthorId { get; set; } = default!;
 }

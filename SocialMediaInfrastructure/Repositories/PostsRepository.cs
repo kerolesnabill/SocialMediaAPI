@@ -68,4 +68,14 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         post.Likes.Remove(user);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task<int> GetLikesCountAsync(int postId)
+    {
+        var count = await dbContext.Posts.
+            Where(p => p.Id == postId)
+            .Select(p => p.Likes.Count)
+            .FirstOrDefaultAsync();
+
+        return count;
+    }
 }

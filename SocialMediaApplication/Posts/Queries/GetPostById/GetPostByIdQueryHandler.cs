@@ -20,6 +20,7 @@ public class GetPostByIdQueryHandler(ILogger<GetPostByIdQueryHandler> logger,
             ?? throw new NotFoundException(nameof(Post), request.Id.ToString());
 
         var result = mapper.Map<PostDto>(post);
+        result.LikesCount = await postsRepository.GetLikesCountAsync(request.Id);
 
         return result;
     }

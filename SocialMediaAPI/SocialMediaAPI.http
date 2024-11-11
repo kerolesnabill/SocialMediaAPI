@@ -33,7 +33,7 @@ Authorization: Bearer {{token}}
 }
 ###
 
-GET {{SocialMediaAPI_HostAddress}}/api/posts/51
+GET {{SocialMediaAPI_HostAddress}}/api/posts/52
 Authorization: Bearer {{token}}
 ###
 
