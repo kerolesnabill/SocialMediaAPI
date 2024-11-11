@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace SocialMediaDomain.Entities;
+﻿namespace SocialMediaDomain.Entities;
 
 public class Post
 {
@@ -11,4 +9,6 @@ public class Post
 
     public User Author { get; set; } = default!;
     public string AuthorId { get; set; } = default!;
+
+    public ICollection<User> Likes { get; set; } = [];
 }

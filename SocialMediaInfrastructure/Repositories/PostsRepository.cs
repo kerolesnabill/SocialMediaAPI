@@ -50,4 +50,22 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         dbContext.Update(post);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task<Post?> GetByIdWithLikesAsync(int id)
+    {
+        var post = await dbContext.Posts.Include(p => p.Likes).FirstOrDefaultAsync(p => p.Id == id);
+        return post;
+    }
+
+    public async Task AddLikeAsync(Post post, User user)
+    {
+        post.Likes.Add(user);
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task RemoveLikeAsync(Post post, User user)
+    {
+        post.Likes.Remove(user);
+        await dbContext.SaveChangesAsync();
+    }
 }

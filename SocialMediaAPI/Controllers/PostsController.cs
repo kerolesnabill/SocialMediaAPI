@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Posts.Commands.CreatePost;
 using SocialMediaApplication.Posts.Commands.DeletePost;
+using SocialMediaApplication.Posts.Commands.LikeOrUnlikePost;
 using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaApplication.Posts.Queries.GetAllPosts;
 using SocialMediaApplication.Posts.Queries.GetPostById;
@@ -63,5 +64,14 @@ public class PostsController(IMediator mediator) : ControllerBase
         command.Id = id;
         await mediator.Send(command);
         return NoContent();
+    }
+
+    [HttpPost("{postId}/like")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Like([FromRoute] int postId)
+    {
+        await mediator.Send(new LikeOrUnlikePostCommand(postId));
+        return Ok();
     }
 }
