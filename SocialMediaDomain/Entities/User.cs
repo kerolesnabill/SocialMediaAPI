@@ -12,5 +12,5 @@ public class User : IdentityUser
     public ICollection<User> Followers { get; set; } = [];
     public ICollection<User> Following { get; set; } = [];
 
-    public IEnumerable<Post> Posts { get; set; } = [];
+    public ICollection<Post> Posts { get; set; } = [];
 }

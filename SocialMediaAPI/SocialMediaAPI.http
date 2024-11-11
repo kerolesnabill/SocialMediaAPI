@@ -1,5 +1,5 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ7GkYDfY4mgMVVXVivpm-TPRr9ktXw2ANwHJyvliiiC49Ul1DnOF_70_AEisOHQRQaYxLriKyPu3pnuf_LaSqwE5EU5SPbIbor_uZ1QI9bz4GnjG5NZY5FzQbUKpCUE5kGIhyFRVHbnzXFAnP6Emu47SeUMooU_nM2WYsx65t85Nv6RbDdKbzYgnBsF4pth2A5xwAi-Wdv6I3Un10JMeCaYjeS0MzCHEjj5KJEpvLi-Zq-UVYKySbMiseANjbDCp4zxxxjOFjL8t_qJNxwS6eYFlQxoYu6si5QYfQ1nFZlPvSJXRH-VK2b62RQ50wmiuV8oMheACFS4i6EBeLv68ySOftHzXRr2QWBoAGue1bPz4_m4dijPu2bB3Af1kqOw5tbmtmuyht2kGJn1FCANbugketx75dckU1mmcKBlszfcgWK3_aIZuZrOqVLiIOG8h2izu0lm8PMmzcU6SxU_rEn92dZJJKh2CHupqCOCUvcr8NS7YaEI3NpjEyjhUa7RCvKPL0V5RY1g5Awqqjt0EYxYpsbZb5oYolisvMev1ZYdtwc0ef5OAorllxEyedAa6O2K0B8Lccl3L57YvRMHrC9_Om2sgWGWcCh8qmYcA3uUzsEq-4zqhwmZ1ndFJCREM24ZllVTxghtAejMl3IK6GJE
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ4QxL7rLu6L7pWQyJA2dcn32xvpLGoFAhIpvT_6vUiCKOh2uaxHvkU8N8whCULsxWQ5oftpAqisVZOv_frcwBYKEnC7aEDf54t0GmyafdL0X89abPTSWAnKg1_7ujunoYTl5xYjhaBYlfx_r8zgHsMX28LgP0-I0dmAPFgvAkHKyHnCfkeA1rxXArwcRBNRZOyV-XsO8ypVCDP92puwtDXMT6cekLSzzeOEj0ANktjvUu92Eh6ZqPNAzzCDk6J8chNzQmBz5e8M8tTk6bk-3HfO6ukIvmRkwCQ7NFKH3cnmDGOTHCCduCPLuffpIz7fsyLYCyrNP0XGN7KDpCj9cStyg2GZABahc1sb-QCUVPayOXWPE7yIRV82ZLwfpoDtzIWKlB9aRbjhmxQJG-xmjjXbMuJ4TKg6NDFHFYaQg3zaS0sYKADYSFbZ1qmnot32dw5FK87Aeh7gJSEEcZVO2RSl_JeUkbAFEZFPU-FJpKUr-OSdnEWOd5D7PWz8OBjU9kQHcAIt86_uwzdGPpG3vSzw7PrwIUy7dgx34wV0KcBtLj-VkA39zV-JmE6y5-6WkmtOZJ32d2-uh5rfSxqXnA2ntkbhefBG5TXYvkNsivvw4PJgc_UqyshRTElJF8V3VSbSXQKvuN-qZbLpgWLyL5Jt
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
@@ -25,11 +25,15 @@ Authorization: Bearer {{token}}
 
 {
   "Title": ".....",
-  "Description": "kero description"
+  "Description": "kero description",
+  "Images" : [
+    "image1",
+    "image2"
+  ]
 }
 ###
 
-GET {{SocialMediaAPI_HostAddress}}/api/posts/33
+GET {{SocialMediaAPI_HostAddress}}/api/posts/51
 Authorization: Bearer {{token}}
 ###
 
@@ -68,5 +72,9 @@ Authorization: Bearer {{token}}
 ###
 
 GET {{SocialMediaAPI_HostAddress}}/api/users/e8eb0fc9-ffd4-43c6-a266-ba5d59d5b6a9/following
+Authorization: Bearer {{token}}
+###
+
+GET {{SocialMediaAPI_HostAddress}}/api/users/e8eb0fc9-ffd4-43c6-a266-ba5d59d5b6a9
 Authorization: Bearer {{token}}
 ###

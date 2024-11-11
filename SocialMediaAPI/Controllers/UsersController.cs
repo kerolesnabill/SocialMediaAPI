@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Users.Commands.FollowUser;
 using SocialMediaApplication.Users.Commands.RegisterUser;
 using SocialMediaApplication.Users.Commands.UnfollowUser;
+using SocialMediaApplication.Users.Queries.GetUserById;
 using SocialMediaApplication.Users.Queries.GetUserFollowers;
 using SocialMediaApplication.Users.Queries.GetUserFollowing;
 
@@ -27,6 +28,16 @@ public class UsersController(IMediator mediator) : ControllerBase
         return BadRequest(result.Errors);
     }
 
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetUserById([FromRoute] string id)
+    {
+        var user = await mediator.Send(new GetUserByIdQuery(id));
+        return Ok(user);
+    }
+
     [HttpGet("{id}/followers")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -41,8 +52,8 @@ public class UsersController(IMediator mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetUserFollowing([FromRoute] string id)
     {
-        var followers = await mediator.Send(new GetUserFollowingQuery(id));
-        return Ok(followers);
+        var following = await mediator.Send(new GetUserFollowingQuery(id));
+        return Ok(following);
     }
 
     [HttpPost("{id}/follow")]

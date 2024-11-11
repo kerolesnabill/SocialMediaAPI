@@ -30,4 +30,22 @@ internal class UsersRepository(SocialMediaDbContext dbContext) : IUsersRepositor
         var user = await dbContext.Users.Include(u => u.Followers).FirstOrDefaultAsync(u => u.Id == id);
         return user;
     }
+
+    public async Task<(int, int)> GetFollowersAndFollowingCountAsync(string id)
+    {
+        var user = await dbContext.Users.Where(u => u.Id == id)
+                    .Select(u => new
+                    {
+                        FollowersCount = u.Followers.Count,
+                        FollowingCount = u.Following.Count
+                    }).FirstOrDefaultAsync();
+
+        return (user!.FollowersCount, user.FollowingCount);
+    }
+
+    public async Task<User?> GetByIdWithPostsAsync(string id)
+    {
+        var user = await dbContext.Users.Include(u => u.Posts).FirstOrDefaultAsync(u => u.Id == id);
+        return user;
+    }
 }

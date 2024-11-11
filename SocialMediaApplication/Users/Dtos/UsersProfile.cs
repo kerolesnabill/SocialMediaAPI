@@ -8,5 +8,6 @@ internal class UsersProfile : Profile
     public UsersProfile()
     {
         CreateMap<User, UserMiniDto>();
+        CreateMap<User, UserDto>();
     }
 }
