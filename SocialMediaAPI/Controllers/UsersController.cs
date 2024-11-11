@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Users.Commands.FollowUser;
 using SocialMediaApplication.Users.Commands.RegisterUser;
 using SocialMediaApplication.Users.Commands.UnfollowUser;
+using SocialMediaApplication.Users.Commands.UpdateUser;
 using SocialMediaApplication.Users.Queries.GetUserById;
 using SocialMediaApplication.Users.Queries.GetUserFollowers;
 using SocialMediaApplication.Users.Queries.GetUserFollowing;
@@ -73,6 +74,17 @@ public class UsersController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> Unfollow([FromRoute] string id)
     {
         await mediator.Send(new UnfollowUserCommand(id));
+        return NoContent();
+    }
+
+    [HttpPatch("me")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> UpdateUser(UpdateUserCommand command)
+    {
+        await mediator.Send(command);
         return NoContent();
     }
 }

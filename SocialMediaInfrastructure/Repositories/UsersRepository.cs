@@ -48,4 +48,10 @@ internal class UsersRepository(SocialMediaDbContext dbContext) : IUsersRepositor
         var user = await dbContext.Users.Include(u => u.Posts).FirstOrDefaultAsync(u => u.Id == id);
         return user;
     }
+
+    public async Task UpdateAsync(User user)
+    {
+        dbContext.Update(user);
+        await dbContext.SaveChangesAsync();
+    }
 }

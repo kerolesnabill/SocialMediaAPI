@@ -10,4 +10,5 @@ public interface IUsersRepository
     Task<User?> GetByIdWithPostsAsync(string id);
     Task FollowAsync(User follower, User following);
     Task UnfollowAsync(User follower, User following);
+    Task UpdateAsync(User user);
 }
