@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Users.Commands.FollowUser;
 using SocialMediaApplication.Users.Commands.RegisterUser;
+using SocialMediaApplication.Users.Commands.UnfollowUser;
 
 namespace SocialMediaAPI.Controllers;
 
@@ -32,5 +33,15 @@ public class UsersController(IMediator mediator) : ControllerBase
     {
         await mediator.Send(new FollowUserCommand(id));
         return Ok();
+    }
+
+    [HttpDelete("{id}/unfollow")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Unfollow([FromRoute] string id)
+    {
+        await mediator.Send(new UnfollowUserCommand(id));
+        return NoContent();
     }
 }

@@ -12,6 +12,12 @@ internal class UsersRepository(SocialMediaDbContext dbContext) : IUsersRepositor
         follower.Following.Add(following);
         await dbContext.SaveChangesAsync();
     }
+    
+    public async Task UnfollowAsync(User follower, User following)
+    {
+        follower.Following.Remove(following);
+        await dbContext.SaveChangesAsync();
+    }
 
     public async Task<User?> GetByIdWithFollowingAsync(string id)
     {

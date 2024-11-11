@@ -58,3 +58,7 @@ Authorization: Bearer {{token}}
 POST {{SocialMediaAPI_HostAddress}}/api/users/f74769bf-176d-443e-92f8-f9f998942172/follow
 Authorization: Bearer {{token}}
 ###
+
+DELETE {{SocialMediaAPI_HostAddress}}/api/users/f74769bf-176d-443e-92f8-f9f998942172/unfollow
+Authorization: Bearer {{token}}
+###
