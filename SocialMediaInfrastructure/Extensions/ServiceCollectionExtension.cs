@@ -21,6 +21,7 @@ public static class ServiceCollectionExtension
                 .AddEntityFrameworkStores<SocialMediaDbContext>();
 
         services.AddScoped<IPostsRepository, PostsRepository>();
+        services.AddScoped<IUsersRepository, UsersRepository>();
 
         services.AddScoped<IPostAuthorizationService, PostAuthorizationService>();
     }

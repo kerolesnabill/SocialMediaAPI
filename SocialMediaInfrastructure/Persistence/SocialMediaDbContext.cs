@@ -20,5 +20,21 @@ internal class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> optio
             .HasMany(u => u.Posts)
             .WithOne(p => p.Author)
             .HasForeignKey(p => p.AuthorId);
+
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Followers)
+            .WithMany(u => u.Following)
+            .UsingEntity<Dictionary<string, object>>(
+                "UserFollowers",
+                j => j
+                    .HasOne<User>()
+                    .WithMany()
+                    .HasForeignKey("FollowerId")
+                    .OnDelete(DeleteBehavior.NoAction),
+                j => j
+                    .HasOne<User>()
+                    .WithMany()
+                    .HasForeignKey("FollowingId")
+                    .OnDelete(DeleteBehavior.NoAction));
     }
 }

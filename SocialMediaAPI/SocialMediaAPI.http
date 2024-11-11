@@ -1,12 +1,12 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6-p-7Ggsc95WihH64-2565uG87Xsaz6ZxkjtblbgPgEZ7falab76vdjLGDvP5RSXy3V_gUTRLE1UmphfVBRPZ6BJ0Bm1XFKHgGvIhiteJlnnbRAkAyXXUnhnHjemM7Of4fudaDnG-vLboQ1avz8JJNCtxhGZPvERqHY6G9AXHiFjPF8UW2pIS0xBW6vh4idgWEm_mn-fbCOO3FKrPNL597hX5UOsmblChjbBep4f5llQvkR5oc1GhyKgONDUW5bvio0xeOMzNR9GYXCs7KT3bZWuVqe3k-FUkg6_uy-QXUBnos3yI-JrrbK3qWn6qHUI86ww8J-RT_qzKLMMRTnJDE9yX2EEvY0pCiimymfTVUc5Gn5VV0OMp1w3a6lUz1C_v-k10wP5Bl-fZAM4UgR2SkqxtFmPxrbdaRWxAwiH42g7zlbvM7JhvLYxominPAeFl9Y5MZqy40WoIqwzuXEp3d-YG6VwakSFjVI-zGXi3ksfljuZGIsqZfjpX7CN9DaIAqmBjWXnW65DPCbGyhefKn_B-iVyg1pGms_Fca9cU_XffXZAxrtmnOtyCuWiwBbIauOHjq-1AxUYJCt56KhiVr_Y9MDDSf_FCgbUMOGHhfrm8Ne7rlGnhH1gtZ7cuNYSK4gHfJ6Ku2YF4gQgSjjcc_
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ4EgHclAvSK4THFpbYMRaL2pfqt3PyR-wumwChEseiGTv0Iy29as-fNsQHsk3PsPsuzOoL3p5QPBW2c2wMIawy8T0wd3f8kHrKmzlZ-59pDaETfR3z37lqFRy6t_yun8mQndM4YFfe1Az_ej-fNEpjdOrJ-r-2TqClT7s6_bZvosV4qAdHWiP4q5lcB6XJqx0eZnhh0Jckvuqbb5gseJwlv9RFuFL5e7xZGSoHv4TLWg0mgbzfT-jjazyEgqNWcpuV943bokwC4_2Hrun51OXQGubl9DVhnVSkzTyEQ3ZbS3YPuWnpCtD9anbWzbYHbGQzTECXKaj54mosi7gX3BeEzE_bbLNxO034k-GkSywRl67Ox3_Y-naGePEOZjqIGHwpLF5ly6Gj4gsx2qd2l8eZWa4qUtT3R4Cp95gP61MAlrfaBxcGBFA50ua1ws1DBPojv32lG65sCNoUS2yFerxcaAdD1XbQZd9sfWmas7fDTQ0Iah8WGeVYo4wKDsdlAyIppTYc_n24EqCd8h2zCXLDeEaJDsyAjhIYQnAaUOj0RT_1ouJkoXfRh_DBgF22QiY3gBO-YcZ354CdQ6TGl0O70ooPTJ1KxC5uicT_suCZeHw9SPifvmNwPYZJ_H_oaaNNOnnGJ_wgcS1KxVc2a8tH2
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
 { 
-  "FullName": "Kero",
-  "Username": "Username",
-  "email": "k@k",
+  "FullName": "Kero Nabil",
+  "Username": "KeroNabil",
+  "email": "kero@kero",
   "password": "Password1!"
 }
 ###
@@ -14,7 +14,7 @@ Content-Type: application/json
 Post {{SocialMediaAPI_HostAddress}}/api/users/login
 Content-Type: application/json
 {
-  "email": "Username",
+  "email": "kero",
   "password": "Password1!"
 }
 ###
@@ -52,5 +52,9 @@ Authorization: Bearer {{token}}
 ###
 
 GET {{SocialMediaAPI_HostAddress}}/api/posts?pageNumber=2&searchPhase=
+Authorization: Bearer {{token}}
+###
+
+POST {{SocialMediaAPI_HostAddress}}/api/users/f74769bf-176d-443e-92f8-f9f998942172/follow
 Authorization: Bearer {{token}}
 ###

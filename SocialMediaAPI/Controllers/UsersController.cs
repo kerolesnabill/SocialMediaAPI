@@ -1,14 +1,18 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SocialMediaApplication.Users.Commands.FollowUser;
 using SocialMediaApplication.Users.Commands.RegisterUser;
 
 namespace SocialMediaAPI.Controllers;
 
 [Route("api/users")]
 [ApiController]
+[Authorize]
 public class UsersController(IMediator mediator) : ControllerBase
 {
     [HttpPost("register", Order = -1)]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> Register(RegisterUserCommand command)
@@ -18,5 +22,15 @@ public class UsersController(IMediator mediator) : ControllerBase
             return Ok();
 
         return BadRequest(result.Errors);
+    }
+
+    [HttpPost("{id}/follow")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Follow([FromRoute] string id)
+    {
+        await mediator.Send(new FollowUserCommand(id));
+        return Ok();
     }
 }
