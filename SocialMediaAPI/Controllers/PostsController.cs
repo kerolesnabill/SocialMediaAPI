@@ -7,6 +7,7 @@ using SocialMediaApplication.Posts.Commands.LikeOrUnlikePost;
 using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaApplication.Posts.Queries.GetAllPosts;
 using SocialMediaApplication.Posts.Queries.GetPostById;
+using SocialMediaApplication.Posts.Queries.GetPostLikes;
 
 namespace SocialMediaAPI.Controllers;
 
@@ -73,5 +74,14 @@ public class PostsController(IMediator mediator) : ControllerBase
     {
         await mediator.Send(new LikeOrUnlikePostCommand(postId));
         return Ok();
+    }
+
+    [HttpGet("{postId}/likes")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetPostLikes([FromRoute] int postId)
+    {
+        var postLikes = await mediator.Send(new GetPostLikesQuery(postId));
+        return Ok(postLikes);
     }
 }
