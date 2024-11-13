@@ -1,5 +1,5 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ5rz4_CrWKKGYKvvNLrLla21xVcxluAWc5rlX8lzAWS_PgFUEbzc7peOzJdA85DPKb6nXr8ZTnUO5JbUu-QuTaVYVRy3CJ6t-IqFuioRtGo0f_iJyhMV92tAlPwZoiWglar3jqZYBbVxIXciCs21FtfJeva4sYiHRV_G96YLSuvSJ-DfeYYkt9FzW7eBJ1wiHNMDa16pJXDu66xpZ873Blb2PmieHMFcEU3mosF439jsq9Feh61BjCb_FD1mqSQ1ZdgX17Ww-4SbuXVUKLdv-Yv5nB6mFXXZzI0VlU6ImNCg2WFukueRGi76zcqPmZR5eT1G_UXsrxtaSVD3yi7J6_thnUF8yqKNmriISIIibdLJFxy2-pFuXSPL3fFMCBjXBTl9RnE-SNamxCpaiVZiFXeSecWyzkKosFFUtnfQGnk443NMt4kImpustYhNvH-_9gMvsQBOYKhyCE51S2ATDpUKiuBJ5tDRDudsI4Rtwbcbwa7Jt9AlZ1asM4dmvIxDDWsap7C3vq2zDLef80pcnSAjNPN4FXajbco9umrFUXqK82uoL3dZxmeDcxlNkPzg8v7ZQwOumYZbEk41i9lOrrFB2hqtKvVFUpro6NWh_ec3vmQ4JW_BlFZxpRKNJdkC_cvU8QC-FSnOixzm9tbvGcY
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6EqrgmSUfn_Jp3Jx3ruQRvfZlrncCzTvXjvqTMBjArojF7_31n-7NENIfFNBvHoUlrg6a4j9QqGM0cfqWOIepqb0O2Pcj4Uk1ofYR_pHe91ZvY1lTG3wZMo0HF09QhgI2yy9Bz9HYmiRtlVc7nKH2sF-_EWCKV-1bW9-yNlv6oH8W8SJkOFm-nutP5E6EOBa5vev2Z5O72keAo753sg3r4wbW_JNOlU04kTFXDfcWmqf5FgbTG5x9BHAdOnppGbf7-GAV1UNkOzeuwcbOZN26hEz0VFnTjcrXyYGRJAGP-V7-eFF_wFZvIeod_BSDBZRrYPdpek4HdxM9Sek7qfNzrd6qOfP_5sv7GiaJGlzhs7dyJ0avz4ZvrNc86ONegAgorNESAvQasbq5iN_0HZPhBF_qLYxrNsCqp2QUtZMY7vDEcs_u0v3kqRHHoIu41yY9dsn5UkB0VRnzCftbivRloQFY3PACQZUm3MlIHW8wVsQPm_YTNjJaZHnFj-Nmi-okzPgibOGXDbfwhpdDNToWRGiPGxctxaZNiDLDpqX98h4OZCzNx5cfdaiuGHhl74MvgzmwFsUoszN0FHdxzLI4UAXZvyn_4MRjV_lKYiUhUhKLRKOplYCpgDhxlbeywCSYkfqVtKU-bNiaYp58go7J8
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
@@ -38,7 +38,7 @@ Authorization: Bearer {{token}}
 ###
 
 
-DELETE {{SocialMediaAPI_HostAddress}}/api/posts/29
+DELETE {{SocialMediaAPI_HostAddress}}/api/posts/54
 Authorization: Bearer {{token}}
 ###
 
@@ -95,7 +95,7 @@ GET {{SocialMediaAPI_HostAddress}}/api/posts/52/likes
 Authorization: Bearer {{token}}
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/posts/53/comments
+POST {{SocialMediaAPI_HostAddress}}/api/posts/54/comments
 Content-Type: application/json
 Authorization: Bearer {{token}}
 {
@@ -116,7 +116,7 @@ Authorization: Bearer {{token}}
 }
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/7/like
+POST {{SocialMediaAPI_HostAddress}}/api/posts/54/comments/11/like
 Authorization: Bearer {{token}}
 ###
 

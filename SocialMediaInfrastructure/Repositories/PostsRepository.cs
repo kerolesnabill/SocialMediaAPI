@@ -16,6 +16,14 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
 
     public async Task Delete(Post entity)
     {
+        var comments = await dbContext.Comments.Include(c => c.Likes)
+                .Where(c => c.PostId == entity.Id).ToListAsync();
+
+        foreach (var comment in comments)
+            comment.Likes.Clear();
+
+        dbContext.RemoveRange(comments);
+
         dbContext.Remove(entity);
         await dbContext.SaveChangesAsync();
     }
