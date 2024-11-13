@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SocialMediaApplication.Comments.CreateComment;
+namespace SocialMediaApplication.Comments.Commands.CreateComment;
 
 public class CreateCommentCommand : IRequest<int>
 {

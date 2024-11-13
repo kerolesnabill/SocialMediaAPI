@@ -26,4 +26,10 @@ internal class CommentsRepository(SocialMediaDbContext dbContext) : ICommentsRep
             .Select(c => c.Likes.Count)
             .FirstOrDefaultAsync();
     }
+
+    public async Task UpdateAsync(Comment entity)
+    {
+        dbContext.Update(entity);
+        await dbContext.SaveChangesAsync();
+    }
 }

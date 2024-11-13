@@ -104,6 +104,14 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/2
+GET {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/5
 Authorization: Bearer {{token}}
+###
+
+PATCH {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/2
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "Content": "This is a new comment"
+}
 ###

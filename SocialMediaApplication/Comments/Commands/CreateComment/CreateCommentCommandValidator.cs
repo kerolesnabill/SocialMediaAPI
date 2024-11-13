@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SocialMediaApplication.Comments.CreateComment;
+namespace SocialMediaApplication.Comments.Commands.CreateComment;
 
 public class CreateCommentCommandValidator : AbstractValidator<CreateCommentCommand>
 {

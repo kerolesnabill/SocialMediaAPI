@@ -6,7 +6,7 @@ using SocialMediaDomain.Entities;
 using SocialMediaDomain.Exceptions;
 using SocialMediaDomain.Interfaces;
 
-namespace SocialMediaApplication.Comments.CreateComment;
+namespace SocialMediaApplication.Comments.Commands.CreateComment;
 
 public class CreateCommentCommandHandler(ILogger<CreateCommentCommandHandler> logger,
         ICommentsRepository commentsRepository,
