@@ -8,6 +8,7 @@ internal class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> optio
         : IdentityDbContext<User>(options)
 {
     internal DbSet<Post> Posts { get; set; }
+    internal DbSet<Comment> Comments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,6 +21,11 @@ internal class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> optio
             .HasMany(u => u.Posts)
             .WithOne(p => p.Author)
             .HasForeignKey(p => p.AuthorId);
+
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Comments)
+            .WithOne(c => c.Commenter)
+            .HasForeignKey(c => c.CommenterId);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Followers)
@@ -51,6 +57,27 @@ internal class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> optio
                     .HasOne<Post>()
                     .WithMany()
                     .HasForeignKey("PostId")
+                    .OnDelete(DeleteBehavior.NoAction));
+
+        modelBuilder.Entity<Post>()
+            .HasMany(p => p.Comments)
+            .WithOne(c => c.Post)
+            .HasForeignKey(c => c.PostId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Comment>()
+            .HasMany(c => c.Likes)
+            .WithMany(u => u.LikedComments)
+            .UsingEntity<Dictionary<string, object>>("CommentLikes",
+                j => j
+                    .HasOne<User>()
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.NoAction),
+                j => j
+                    .HasOne<Comment>()
+                    .WithMany()
+                    .HasForeignKey("CommentId")
                     .OnDelete(DeleteBehavior.NoAction));
     }
 }
