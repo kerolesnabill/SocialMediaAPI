@@ -20,6 +20,7 @@ public static class ServiceCollectionExtension
         services.AddIdentityApiEndpoints<User>()
                 .AddEntityFrameworkStores<SocialMediaDbContext>();
 
+        services.AddScoped<ICommentsRepository, CommentsRepository>();
         services.AddScoped<IPostsRepository, PostsRepository>();
         services.AddScoped<IUsersRepository, UsersRepository>();
 
