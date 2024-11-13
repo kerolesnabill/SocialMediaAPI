@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using SocialMediaApplication.Users;
+using SocialMediaDomain.Constants;
 using SocialMediaDomain.Entities;
 using SocialMediaDomain.Exceptions;
 using SocialMediaDomain.Interfaces;
@@ -9,6 +10,7 @@ using SocialMediaDomain.Interfaces;
 namespace SocialMediaApplication.Comments.Commands.UpdateComment;
 
 public class UpdateCommentCommandHandler(ILogger<UpdateCommentCommandHandler> logger,
+        ICommentAuthorizationService commentAuthorizationService,
         ICommentsRepository commentsRepository,
         IPostsRepository postsRepository,
         IUserContext userContext) : IRequestHandler<UpdateCommentCommand>
@@ -24,6 +26,9 @@ public class UpdateCommentCommandHandler(ILogger<UpdateCommentCommandHandler> lo
 
         var comment = await commentsRepository.GetByIdAsync(request.Id)
             ?? throw new NotFoundException(nameof(Comment), request.Id.ToString());
+
+        var isAuthorized = commentAuthorizationService.Authorize(comment, post, ResourceOperation.Update);
+        if (!isAuthorized) throw new ForbidException();
 
         comment.Content = request.Content;
         comment.UpdatedAt = DateTime.Now;

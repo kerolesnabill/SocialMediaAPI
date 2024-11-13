@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Comments.Commands.CreateComment;
+using SocialMediaApplication.Comments.Commands.DeleteComment;
 using SocialMediaApplication.Comments.Commands.LikeOrUnlikeComment;
 using SocialMediaApplication.Comments.Commands.UpdateComment;
 using SocialMediaApplication.Comments.Queries.GetCommentById;
@@ -51,5 +52,12 @@ public class CommentsController(IMediator mediator) : ControllerBase
     {
         var likes = await mediator.Send(command);
         return Ok(likes);
+    }
+
+    [HttpDelete("{commentId}")]
+    public async Task<IActionResult> DeleteComment([FromRoute] DeleteCommentCommand command)
+    {
+        await mediator.Send(command);
+        return NoContent();
     }
 }

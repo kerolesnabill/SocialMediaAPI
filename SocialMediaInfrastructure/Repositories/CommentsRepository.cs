@@ -49,4 +49,11 @@ internal class CommentsRepository(SocialMediaDbContext dbContext) : ICommentsRep
         comment.Likes.Remove(user);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task DeleteAsync(Comment entity)
+    {
+        entity.Likes = [];
+        dbContext.Remove(entity);
+        await dbContext.SaveChangesAsync();
+    }
 }

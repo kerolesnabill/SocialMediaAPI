@@ -25,5 +25,6 @@ public static class ServiceCollectionExtension
         services.AddScoped<IUsersRepository, UsersRepository>();
 
         services.AddScoped<IPostAuthorizationService, PostAuthorizationService>();
+        services.AddScoped<ICommentAuthorizationService, CommentAuthorizationService>();
     }
 }

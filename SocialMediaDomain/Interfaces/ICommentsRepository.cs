@@ -11,4 +11,5 @@ public interface ICommentsRepository
     Task UpdateAsync(Comment entity);
     Task AddLikeAsync(Comment comment, User user);
     Task RemoveLikeAsync(Comment comment, User user);
+    Task DeleteAsync(Comment entity);
 }
