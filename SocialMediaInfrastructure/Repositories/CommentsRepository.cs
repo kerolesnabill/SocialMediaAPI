@@ -19,6 +19,11 @@ internal class CommentsRepository(SocialMediaDbContext dbContext) : ICommentsRep
         return await dbContext.Comments.Include(c => c.Commenter).FirstOrDefaultAsync(c => c.Id == id);
     }
 
+    public async Task<Comment?> GetByIdWithLikesAsync(int id)
+    {
+        return await dbContext.Comments.Include(c => c.Likes).FirstOrDefaultAsync(c => c.Id == id);
+    }
+
     public async Task<int> GetLikesCountAsync(int id)
     {
         return await dbContext.Comments.
@@ -30,6 +35,18 @@ internal class CommentsRepository(SocialMediaDbContext dbContext) : ICommentsRep
     public async Task UpdateAsync(Comment entity)
     {
         dbContext.Update(entity);
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task AddLikeAsync(Comment comment, User user)
+    {
+        comment.Likes.Add(user);
+        await dbContext.SaveChangesAsync(); 
+    }
+
+    public async Task RemoveLikeAsync(Comment comment, User user)
+    {
+        comment.Likes.Remove(user);
         await dbContext.SaveChangesAsync();
     }
 }
