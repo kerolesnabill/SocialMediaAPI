@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Comments.CreateComment;
+using SocialMediaApplication.Comments.Queries.GetCommentById;
 
 namespace SocialMediaAPI.Controllers;
 
@@ -16,5 +17,12 @@ public class CommentsController(IMediator mediator) : ControllerBase
         command.PostId = postId;
         var id = await mediator.Send(command);
         return Created();
+    }
+
+    [HttpGet("{commentId}")]
+    public async Task<IActionResult> GetCommentById([FromRoute] GetCommentByIdQuery command)
+    {
+        var comment = await mediator.Send(command);
+        return Ok(comment);
     }
 }

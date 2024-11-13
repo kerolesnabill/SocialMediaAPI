@@ -9,5 +9,6 @@ public class CommentsProfile : Profile
     public CommentsProfile()
     {
         CreateMap<CreateCommentCommand, Comment>();
+        CreateMap<Comment, CommentDto>();
     }
 }
