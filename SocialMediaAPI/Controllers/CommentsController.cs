@@ -5,6 +5,7 @@ using SocialMediaApplication.Comments.Commands.CreateComment;
 using SocialMediaApplication.Comments.Commands.LikeOrUnlikeComment;
 using SocialMediaApplication.Comments.Commands.UpdateComment;
 using SocialMediaApplication.Comments.Queries.GetCommentById;
+using SocialMediaApplication.Comments.Queries.GetCommentLikes;
 
 namespace SocialMediaAPI.Controllers;
 
@@ -43,5 +44,12 @@ public class CommentsController(IMediator mediator) : ControllerBase
     {
         await mediator.Send(command);
         return NoContent();
+    }
+
+    [HttpGet("{commentId}/likes")]
+    public async Task<IActionResult> GetCommentLikes([FromRoute] GetCommentLikesQuery command)
+    {
+        var likes = await mediator.Send(command);
+        return Ok(likes);
     }
 }

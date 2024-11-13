@@ -1,5 +1,5 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ4s-Q1lODf6L4FxZZozyI_ya7cRH3deKJvBfW6lK-hbSqn9vXna2KSs4vo-Qbj_Y1weMKyX4IpIgpEWvVzKa1L8OIw6XmPzRbkZRA73pvVPQ3CEISFjfneSX1BJXFiMZEVas2jRtDnVbSE5k1kmQtc3Zxaz5lbP1NhrQkKtlWWqdG2ppjkfNt9crDHfh9jVBC6CqA-Ec_afPFfloLQvGyJcp4_p5N9p25EOx2V05WxNXZp_xAjc049PYoq5D-rOPuJ9yJsKh2nQz2z0WwZpwYJue3yXBgD3Ho20H_7jCTWyIN3qlpNRWdxuCmXoKZDgiMHdaTT3TVJ5cijR9WU-4iWPlNHv3LJUfEG88cCdR2IZzuMmH50P9MxpWbUzJNa2OZVvbCCQQa2dtSpixE34C1SCJ8Nu_Bv77MKRt6YXPFvlkVgOhssO8FU2oieNWvsXRx2QMz-yAvLJIpnZqlKDwm5YHIJzAXxdoMVBnKqFsi_IuJNOV_X039nzdtMeJA71XQcB9THQguq7zLA4_z1iXfIgGgkZtb2jjxZpLPYHJR-8bO-_D_nDdmW1aLjm9f_DSYdhKxZJIW-_gA9MzNWyk0LnN9EWk94dIsfpIA599wA98YUbBYjXsrMyqsr3WHZyLX0Y1mSfu7-HAtZbzExy8Vku
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ46m7cc9n-6ai88upfBE2Mm-JkJN9tgsIid2g5ylw3EiTCRNrb9kJfDPJuquMuxl5CJl-vdLRh5vhaVuynnSdf6Rnk4TK7MfWfYpIs9vpt5mzWouVECsBvRUPLrfi8Qs9diC_hq0Djb4XXtu8YkYnzHgN5TYTH6wkxOut8w7PsTW-rcGOFqoUMJb_OANxi7GphJeOOHz52ESVF0cJpNmeKTHVjNOTtozsPY7j5hvCTXXAX2njy3-LthuxRR1_dR_bBdLty0-aDex08NaI5Jez29xX9xoSDZGWW-n8jVfQuszPhhK6pWDfFc0_u53Q76RWZBOCnfdQs3f7Shns-tQugA9otNJiBOzTVtcctbZ1255anrmyUayaGgahR9bcjVRGfdRL1uYUzv_4hamqgOpU1XcnfsSesXWu86EyA13RTNEOfiq1Udp-uhNXirgt0zS7sT86oTiShMcTSbysZGEj6t-k3dPluo9jJsPP9xJ45Nj9OWGfr2pAaoe2LeZ-eEy3zrBI6jVUIx7z8zkmGlfFr4bbcTRlNDR5uY3ilDT1LfDrXDJR13nmS_YeN_0xFs8mMifU8ofB5nVZ3DZEUVlWtzawBXRWbN8ITnpgA7n-SyfYkIhuVhPLyvsL39uA56RGKPIjYUE3He0hlmPut9XSFq
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
@@ -99,7 +99,7 @@ POST {{SocialMediaAPI_HostAddress}}/api/posts/53/comments
 Content-Type: application/json
 Authorization: Bearer {{token}}
 {
-  "Content" : "This is a comment"
+  "Content" : "This is a comment 2"
 }
 
 ###
@@ -116,6 +116,10 @@ Authorization: Bearer {{token}}
 }
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/2/like
+POST {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/5/like
+Authorization: Bearer {{token}}
+###
+
+GET {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/2/likes
 Authorization: Bearer {{token}}
 ###
