@@ -99,4 +99,17 @@ internal class UsersRepository(SocialMediaDbContext dbContext) : IUsersRepositor
         dbContext.Remove(user);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task<IEnumerable<User>> FindManyContains(string searchPhase)
+    {
+        searchPhase = searchPhase.ToLower();
+
+        var users = await dbContext.Users
+            .Where(u => u.FullName.ToLower().Contains(searchPhase) || 
+                   u.UserName!.ToLower().Contains(searchPhase))
+            .Take(100)
+            .ToListAsync();
+
+        return users;
+    }
 }

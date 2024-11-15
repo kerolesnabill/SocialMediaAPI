@@ -12,4 +12,5 @@ public interface IUsersRepository
     Task UnfollowAsync(User follower, User following);
     Task UpdateAsync(User user);
     Task DeleteAsync(User user);
+    Task<IEnumerable<User>> FindManyContains(string searchPhase);
 }
