@@ -6,6 +6,7 @@ using SocialMediaApplication.Posts.Commands.DeletePost;
 using SocialMediaApplication.Posts.Commands.LikeOrUnlikePost;
 using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaApplication.Posts.Queries.GetAllPosts;
+using SocialMediaApplication.Posts.Queries.GetFeed;
 using SocialMediaApplication.Posts.Queries.GetPostById;
 using SocialMediaApplication.Posts.Queries.GetPostLikes;
 
@@ -24,6 +25,14 @@ public class PostsController(IMediator mediator) : ControllerBase
     {
         var id = await mediator.Send(command);
         return CreatedAtAction(nameof(GetPostById), new { id }, null);
+    }
+
+    [HttpGet("feed")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetFeed([FromQuery] GetFeedQuery query)
+    {
+        var post = await mediator.Send(query);
+        return Ok(post);
     }
 
     [HttpGet]

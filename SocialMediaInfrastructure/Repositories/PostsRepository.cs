@@ -48,6 +48,28 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         return (posts, totalCount);
     }
 
+    public async Task<(IEnumerable<Post>, int)> GetFeedAsync(User user, int pageSize, int pageNumber, string? searchPhase)
+    {
+        var followingIds = user.Following.Select(f => f.Id).ToList();
+
+        searchPhase = searchPhase?.ToLower();
+
+        var baseQuery = dbContext.Posts
+            .Where(p => followingIds.Contains(p.AuthorId) && (searchPhase == null ||
+                   (p.Content.Title != null && p.Content.Title.ToLower().Contains(searchPhase)) ||
+                   (p.Content.Description != null && p.Content.Description.ToLower().Contains(searchPhase))))
+            .OrderByDescending(p => p.CreatedAt);
+
+        var totalCount = await baseQuery.CountAsync();
+
+        var posts = await baseQuery
+            .Skip(pageSize * (pageNumber - 1))
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (posts, totalCount);
+    }
+
     public async Task<Post?> GetByIdAsync(int id)
     {
         var post = await dbContext.Posts.FirstOrDefaultAsync(p => p.Id == id);
