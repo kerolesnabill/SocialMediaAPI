@@ -182,7 +182,7 @@ namespace SocialMediaInfrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PostLikes");
+                    b.ToTable("PostLikes", (string)null);
                 });
 
             modelBuilder.Entity("SocialMediaDomain.Entities.Comment", b =>
@@ -216,7 +216,7 @@ namespace SocialMediaInfrastructure.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("SocialMediaDomain.Entities.Post", b =>
@@ -241,7 +241,7 @@ namespace SocialMediaInfrastructure.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("SocialMediaDomain.Entities.User", b =>
@@ -334,7 +334,7 @@ namespace SocialMediaInfrastructure.Migrations
 
                     b.HasIndex("FollowingId");
 
-                    b.ToTable("UserFollowers");
+                    b.ToTable("UserFollowers", (string)null);
                 });
 
             modelBuilder.Entity("CommentLikes", b =>
@@ -445,7 +445,7 @@ namespace SocialMediaInfrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("SocialMediaDomain.Entities.PostContent", "Content", b1 =>
+                    b.OwnsOne("SocialMediaDomain.Entities.Post.Content#SocialMediaDomain.Entities.PostContent", "Content", b1 =>
                         {
                             b1.Property<int>("PostId")
                                 .HasColumnType("int");
@@ -461,7 +461,7 @@ namespace SocialMediaInfrastructure.Migrations
 
                             b1.HasKey("PostId");
 
-                            b1.ToTable("Posts");
+                            b1.ToTable("Posts", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("PostId");

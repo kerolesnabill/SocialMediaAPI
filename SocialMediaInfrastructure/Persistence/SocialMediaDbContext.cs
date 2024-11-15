@@ -20,12 +20,14 @@ internal class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> optio
         modelBuilder.Entity<User>()
             .HasMany(u => u.Posts)
             .WithOne(p => p.Author)
-            .HasForeignKey(p => p.AuthorId);
+            .HasForeignKey(p => p.AuthorId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Comments)
             .WithOne(c => c.Commenter)
-            .HasForeignKey(c => c.CommenterId);
+            .HasForeignKey(c => c.CommenterId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Followers)

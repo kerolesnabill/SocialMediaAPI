@@ -24,6 +24,13 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
             context.Response.StatusCode = 403;
             await context.Response.WriteAsJsonAsync(new { error = "Access forbid" });
         }
+        catch (IncorrectException ex)
+        {
+            logger.LogWarning(ex.Message);
+
+            context.Response.StatusCode = 404;
+            await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+        }
         catch (Exception ex)
         {
             logger.LogError(ex.Message, ex);

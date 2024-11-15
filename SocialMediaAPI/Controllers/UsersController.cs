@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SocialMediaApplication.Users.Commands.DeleteUser;
 using SocialMediaApplication.Users.Commands.FollowUser;
 using SocialMediaApplication.Users.Commands.RegisterUser;
 using SocialMediaApplication.Users.Commands.UnfollowUser;
@@ -83,6 +84,16 @@ public class UsersController(IMediator mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> UpdateUser(UpdateUserCommand command)
+    {
+        await mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("me")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> DeleteUser(DeleteUserCommand command)
     {
         await mediator.Send(command);
         return NoContent();

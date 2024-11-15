@@ -11,4 +11,5 @@ public interface IUsersRepository
     Task FollowAsync(User follower, User following);
     Task UnfollowAsync(User follower, User following);
     Task UpdateAsync(User user);
+    Task DeleteAsync(User user);
 }

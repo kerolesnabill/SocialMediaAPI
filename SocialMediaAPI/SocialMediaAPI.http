@@ -1,11 +1,11 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6EqrgmSUfn_Jp3Jx3ruQRvfZlrncCzTvXjvqTMBjArojF7_31n-7NENIfFNBvHoUlrg6a4j9QqGM0cfqWOIepqb0O2Pcj4Uk1ofYR_pHe91ZvY1lTG3wZMo0HF09QhgI2yy9Bz9HYmiRtlVc7nKH2sF-_EWCKV-1bW9-yNlv6oH8W8SJkOFm-nutP5E6EOBa5vev2Z5O72keAo753sg3r4wbW_JNOlU04kTFXDfcWmqf5FgbTG5x9BHAdOnppGbf7-GAV1UNkOzeuwcbOZN26hEz0VFnTjcrXyYGRJAGP-V7-eFF_wFZvIeod_BSDBZRrYPdpek4HdxM9Sek7qfNzrd6qOfP_5sv7GiaJGlzhs7dyJ0avz4ZvrNc86ONegAgorNESAvQasbq5iN_0HZPhBF_qLYxrNsCqp2QUtZMY7vDEcs_u0v3kqRHHoIu41yY9dsn5UkB0VRnzCftbivRloQFY3PACQZUm3MlIHW8wVsQPm_YTNjJaZHnFj-Nmi-okzPgibOGXDbfwhpdDNToWRGiPGxctxaZNiDLDpqX98h4OZCzNx5cfdaiuGHhl74MvgzmwFsUoszN0FHdxzLI4UAXZvyn_4MRjV_lKYiUhUhKLRKOplYCpgDhxlbeywCSYkfqVtKU-bNiaYp58go7J8
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6dvI1wtzmPCLkhSyES4eq4-U7kT6WepTCBdkrme7ruBOd8QZtIyJf3v55E2mSuxAnWvOVSs7_Stk9FKbFr6e0G4eROGdcZ28jTFkBUMsDrAbdXOnep4im-VIVtiyXE-B8vrBpE1Khk5K3Xyv7wVgR3lMjKgJHc9Ma2CCZ-DWtvp9wMmHHHm46vHc9NpDCMdIY30R0YH_4kCkwt9WExh4IBpuEUqKElZlDMjzv1XRZCLlx06h-bFjVO_f_i9xRWvCZwSbHJmgkagAB5xh4ZqffeZDYTMh-g2fpjev5zof0WIyYGfgG2mR5gb7dk7a1DiOnayV8A5y6JvxitDKQiSjgfG2r9hRVFlPSlmdq7LG8eld2p4O1LIpDoFLfRvHcigM2_irHmDcAaaeO7XycaU1XAQZx6jexsJ1UDb_mEtzgP4RDvclZWVzl8WS5omF7YuC-8CShXR8cX3EtcRz2opcX0vLRn1e5NjyCS9jdUGYOaLn_uI9Uzn5_Cqk_zVjkwLAnwEVnJriYaLKzlKQoWf87orC-bVKlkNijkpQbb_3eEXchCtmDTE3MnUeZiYAjNfLmiBoAF3ZhIj5AmLuzG8tBnPu3CTxg4YC7BC6Us3whmodKEIhjFHvhdBYStYS4cI8KbEt7hTtnOo-wSxJ1etS25
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
 { 
   "FullName": "Kero Nabil",
-  "Username": "KeroNabil",
+  "Username": "kero",
   "email": "kero@kero",
   "password": "Password1!"
 }
@@ -33,7 +33,7 @@ Authorization: Bearer {{token}}
 }
 ###
 
-GET {{SocialMediaAPI_HostAddress}}/api/posts/52
+GET {{SocialMediaAPI_HostAddress}}/api/posts/58
 Authorization: Bearer {{token}}
 ###
 
@@ -42,7 +42,7 @@ DELETE {{SocialMediaAPI_HostAddress}}/api/posts/54
 Authorization: Bearer {{token}}
 ###
 
-PUT {{SocialMediaAPI_HostAddress}}/api/posts/33
+PUT {{SocialMediaAPI_HostAddress}}/api/posts/58
 Content-Type: application/json
 Authorization: Bearer {{token}}
 {
@@ -59,7 +59,7 @@ GET {{SocialMediaAPI_HostAddress}}/api/posts?pageNumber=2&searchPhase=
 Authorization: Bearer {{token}}
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/users/8b925374-e647-465c-bfec-7960cae0b856/follow
+POST {{SocialMediaAPI_HostAddress}}/api/users/2fc22df6-33ea-4a8b-9390-32e2ebdcab22/follow
 Authorization: Bearer {{token}}
 ###
 
@@ -87,15 +87,15 @@ Content-Type: application/json
 }
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/posts/52/like
+POST {{SocialMediaAPI_HostAddress}}/api/posts/61/like
 Authorization: Bearer {{token}}
 ###
 
-GET {{SocialMediaAPI_HostAddress}}/api/posts/52/likes
+GET {{SocialMediaAPI_HostAddress}}/api/posts/58/likes
 Authorization: Bearer {{token}}
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/posts/54/comments
+POST {{SocialMediaAPI_HostAddress}}/api/posts/61/comments
 Content-Type: application/json
 Authorization: Bearer {{token}}
 {
@@ -104,7 +104,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/2
+GET {{SocialMediaAPI_HostAddress}}/api/posts/58/comments/13
 Authorization: Bearer {{token}}
 ###
 
@@ -116,7 +116,7 @@ Authorization: Bearer {{token}}
 }
 ###
 
-POST {{SocialMediaAPI_HostAddress}}/api/posts/54/comments/11/like
+POST {{SocialMediaAPI_HostAddress}}/api/posts/61/comments/15/like
 Authorization: Bearer {{token}}
 ###
 
@@ -126,4 +126,12 @@ Authorization: Bearer {{token}}
 
 DELETE {{SocialMediaAPI_HostAddress}}/api/posts/53/comments/6
 Authorization: Bearer {{token}}
+###
+
+DELETE {{SocialMediaAPI_HostAddress}}/api/users/me
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "Password": "Password1!"
+}
 ###

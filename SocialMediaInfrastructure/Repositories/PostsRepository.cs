@@ -24,6 +24,7 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
 
         dbContext.RemoveRange(comments);
 
+        entity.Likes.Clear();
         dbContext.Remove(entity);
         await dbContext.SaveChangesAsync();
     }

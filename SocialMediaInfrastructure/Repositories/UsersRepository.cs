@@ -54,4 +54,49 @@ internal class UsersRepository(SocialMediaDbContext dbContext) : IUsersRepositor
         dbContext.Update(user);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task DeleteAsync(User entity)
+    {
+        var user = await dbContext.Users
+            .Include(u => u.Comments)
+                .ThenInclude(c => c.Likes)
+            .Include(u => u.LikedPosts)
+            .Include(u => u.LikedComments)
+            .Include(u => u.Followers)
+            .Include(u => u.Following)                   
+            .FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+        var posts = await dbContext.Posts
+            .Include(p => p.Likes)
+            .Include(p => p.Comments)
+            .ThenInclude(c => c.Likes)
+            .Where(p => p.AuthorId == entity.Id)
+            .ToListAsync();
+
+        user!.Followers.Clear();
+        user.Following.Clear();
+        user.LikedPosts.Clear();
+        user.LikedComments.Clear();
+
+        foreach (var comment in user.Comments)
+        {
+            comment.Likes.Clear();
+            dbContext.Remove(comment);
+        }
+
+        foreach (var post in posts)
+        {
+            foreach (var comment in post.Comments)
+            {
+                comment.Likes.Clear();
+                dbContext.Remove(comment);
+            }
+
+            post.Likes.Clear();
+            dbContext.Remove(post);
+        }
+
+        dbContext.Remove(user);
+        await dbContext.SaveChangesAsync();
+    }
 }
