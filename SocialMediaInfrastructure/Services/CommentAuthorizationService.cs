@@ -22,7 +22,7 @@ internal class CommentAuthorizationService(ILogger<PostAuthorizationService> log
         }
 
         if (resourceOperation == ResourceOperation.Delete && 
-            (user.Id == comment.CommenterId || user.Id == post.AuthorId))
+            (user.Id == comment.CommenterId || user.Id == post.AuthorId || user.IsInRole(UserRoles.Admin)))
         {
             logger.LogInformation("Commenter/Post author - Delete operation - successful authorization");
             return true;

@@ -21,10 +21,16 @@ internal class PostAuthorizationService(ILogger<PostAuthorizationService> logger
             return true;
         }
 
-        if ((resourceOperation == ResourceOperation.Delete || resourceOperation == ResourceOperation.Update)
-                && user.Id == post.AuthorId)
+        if (resourceOperation == ResourceOperation.Update && user.Id == post.AuthorId)
         {
             logger.LogInformation("Post author - successful authorization");
+            return true;
+        }
+
+        if (resourceOperation == ResourceOperation.Delete &&
+            (user.Id == post.AuthorId || user.IsInRole(UserRoles.Admin))) 
+        {
+            logger.LogInformation("Delete operation- successful authorization");
             return true;
         }
 

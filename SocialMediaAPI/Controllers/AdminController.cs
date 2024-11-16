@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SocialMediaApplication.Comments.Commands.DeleteComment;
+using SocialMediaApplication.Posts.Commands.DeletePost;
 using SocialMediaApplication.Users.Commands.AssignUserRole;
 using SocialMediaApplication.Users.Commands.DeleteUserByAdmin;
 using SocialMediaApplication.Users.Commands.GetAllUsers;
@@ -50,4 +52,22 @@ public class AdminController(IMediator mediator) : ControllerBase
         return NoContent();
     }
 
+    [HttpDelete("posts/{postId}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> DeletePost([FromRoute] int postId)
+    {
+        await mediator.Send(new DeletePostCommand(postId));
+        return NoContent();
+    }
+
+
+    [HttpDelete("posts/{postId}/comments/{commentId}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> DeleteComment([FromRoute] DeleteCommentCommand command)
+    {
+        await mediator.Send(command);
+        return NoContent();
+    }
 }
