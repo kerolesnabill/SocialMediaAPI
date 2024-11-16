@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Users.Commands.AssignUserRole;
+using SocialMediaApplication.Users.Commands.DeleteUserByAdmin;
 using SocialMediaApplication.Users.Commands.GetAllUsers;
 using SocialMediaApplication.Users.Commands.UnassignUserRole;
 using SocialMediaDomain.Constants;
@@ -37,6 +38,16 @@ public class AdminController(IMediator mediator) : ControllerBase
     {
         var users = await mediator.Send(query);
         return Ok(users);
+    }
+
+
+    [HttpDelete("users/{userId}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> DeleteUser ([FromRoute] DeleteUserByAdminCommand command)
+    {
+        await mediator.Send(command);
+        return NoContent();
     }
 
 }

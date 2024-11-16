@@ -169,3 +169,8 @@ Authorization: Bearer {{token}}
 GET {{SocialMediaAPI_HostAddress}}/api/admin/users?PageSize=10
 Authorization: Bearer {{token}}
 ###
+
+DELETE {{SocialMediaAPI_HostAddress}}/api/admin/users/de594ce8-40f8-45d2-b04a-636338a59b18
+Authorization: Bearer {{token}}
+
+###
