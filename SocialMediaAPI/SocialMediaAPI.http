@@ -165,3 +165,7 @@ Authorization: Bearer {{token}}
   "RoleName" : "User"
 }
 ###
+
+GET {{SocialMediaAPI_HostAddress}}/api/admin/users?PageSize=10
+Authorization: Bearer {{token}}
+###

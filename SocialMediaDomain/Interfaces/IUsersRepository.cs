@@ -4,6 +4,7 @@ namespace SocialMediaDomain.Interfaces;
 
 public interface IUsersRepository
 {
+    Task<(IEnumerable<User>, int)> GetAllAsync(int pageSize, int pageNumber);
     Task<User?> GetByIdWithFollowingAsync(string id);
     Task<User?> GetByIdWithFollowersAsync(string id);
     Task<(int, int)> GetFollowersAndFollowingCountAsync(string id);

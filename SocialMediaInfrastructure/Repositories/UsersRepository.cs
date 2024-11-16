@@ -112,4 +112,18 @@ internal class UsersRepository(SocialMediaDbContext dbContext) : IUsersRepositor
 
         return users;
     }
+
+    public async Task<(IEnumerable<User>, int)> GetAllAsync(int pageSize, int pageNumber)
+    {
+        var baseQuery = dbContext.Users;
+
+        var totalCount = await baseQuery.CountAsync();
+
+        var users = await baseQuery
+            .Skip(pageSize * (pageNumber - 1))
+            .Take(pageSize)
+            .ToListAsync();
+            
+        return(users, totalCount);
+    }
 }

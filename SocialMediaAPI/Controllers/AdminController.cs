@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApplication.Users.Commands.AssignUserRole;
+using SocialMediaApplication.Users.Commands.GetAllUsers;
 using SocialMediaApplication.Users.Commands.UnassignUserRole;
 using SocialMediaDomain.Constants;
 
@@ -29,4 +30,13 @@ public class AdminController(IMediator mediator) : ControllerBase
         await mediator.Send(command);
         return NoContent();
     }
+
+    [HttpGet("users")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersQuery query)
+    {
+        var users = await mediator.Send(query);
+        return Ok(users);
+    }
+
 }
