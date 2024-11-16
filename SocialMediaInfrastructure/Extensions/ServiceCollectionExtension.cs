@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SocialMediaDomain.Entities;
 using SocialMediaDomain.Interfaces;
 using SocialMediaInfrastructure.Persistence;
 using SocialMediaInfrastructure.Repositories;
+using SocialMediaInfrastructure.Seeders;
 using SocialMediaInfrastructure.Services;
 
 namespace SocialMediaInfrastructure.Extensions;
@@ -18,6 +20,7 @@ public static class ServiceCollectionExtension
             options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
 
         services.AddIdentityApiEndpoints<User>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<SocialMediaDbContext>();
 
         services.AddScoped<ICommentsRepository, CommentsRepository>();
@@ -26,5 +29,7 @@ public static class ServiceCollectionExtension
 
         services.AddScoped<IPostAuthorizationService, PostAuthorizationService>();
         services.AddScoped<ICommentAuthorizationService, CommentAuthorizationService>();
+
+        services.AddScoped<ISeeder, Seeder>();
     }
 }

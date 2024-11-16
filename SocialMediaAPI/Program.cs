@@ -4,6 +4,7 @@ using SocialMediaAPI.Middlewares;
 using SocialMediaApplication.Extensions;
 using SocialMediaDomain.Entities;
 using SocialMediaInfrastructure.Extensions;
+using SocialMediaInfrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,10 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<ISeeder>();
+await seeder.Seed();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
