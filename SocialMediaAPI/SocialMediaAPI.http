@@ -1,5 +1,5 @@
 @SocialMediaAPI_HostAddress = https://localhost:7245
-@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ43oeWEsa6aR1vt_pZHi3XRot_tf-iI1niaTLWrYZ0bOih_rNElj29adEXECzlVZqtDBEtbL6dPMGYDi0ziE0zaykVUxIBJv9UsNjqgxPnqDlFaZeh9ruCuLxzITmr0djcalWSQoRurJHm9-gbtrSYlckFB3yECIZ31SIfzCWt3m32IVUJzv4IhCybEmpCNguaEBGF-QvJbUncFID3Xfv7bu7Sv1fpwkds3lmZUALyQc7agr-o4pbVOt0Z5RBPoV8UPCEvnfjQzYMECY2ygXyFhV9RgFGlAdO1trHevuq3DVTKuFo4_qEhP3rxA09KXemllxQRk8hVEYkSOLGjq-Ig70IMhj05uzshFS-t6bcTE9o5EKkn_DvvVPlNA1ONlPxSqQaNl2TtZzvuASLyIrcM78n_S8l3-nlYgWbd7U3AWyWBXPwUUVwFrHeXjVT9JIZl4Aed85vl4RxVIlaMlbx088XIazVugtDuxvxaj80n_tFVIBFYX6NNlawoop-Y5-M4tGvCxWVZd-4jM-HyBwx_mh6xYOVAr9qMFcqv4bikhj4atSTG7SyefHa59UIcy2qT5Si9NL_AII7unp2tkhmLvjI0BCJ20AVfHpmP5UjXvch_N_LdmojS4F8R07oTrxR_EtNl26lFzhpBN8Q4nQEo5
+@token = CfDJ8C8gBUuK-b5MnLDc6zYJyQ6SkaqXaIg4oMx7ALyF-QxwV-Xc3-uu0RM6Xs2AEvBbFyXzO5VpsEThWe7ZGQZjY_TxOgRa3HfcYGMInlA8GNs-lYmqYD9Aade0rTKU1ByPptfkmRmUoK1hj3uRM1a03bPSq0cKx3Mt6AcljzsYr_ofbwU2EGnmDLqwpW-F52QcjZcV3g4meJ52biAGaFYICJWkDu6UgZ6gj1egw_BQuoOht6dhbxT5EWibbH6fetkFDYfukkcEy7sbtcHTRHq8pemMCZQ2ChB6COV3hl7KFDGtk0quGqgYcVfSs_qoGBOmdxZM9S5df1wQ1bst8PqivIc1y7Snp1cQ8GTNql8GQxQfcveTLr7biRESqiasWf5W6Siep6-Sst7tyb-TjhYbbIaSTDh0UtZZGlYOhzxUWn03h8MUAK1VA4m-B9NHdCdVAtetjsG6C-WSKGNjZ8vDp8pe5xcKgk_6gb4yu_s8RUKwF2mV_ATxoPzUprelRXyQpWSd_sKp0gRtKadKHt-V52NUVZEt2Hc2ZLHSBW5cSdJZWsbqqwYtjU4Wu-YX9GBQ8hcNE_XAOuJlQUmIn2wTdl9k1ykXQ1C07w6Sa6Je8iqs7oFemAQgfeLrB2sM8xvDaCC5Aw2ex9D8N8n9a2yzYCRNFbJ2PS_prdcds0NHvqw4zt260pGIWeotYkqxJxab9uBrLoN9HjjA92ibklNeWrcfpCBXGPUOQi7Tl1hv0gkzjMVfFtsh4EIdNCQDxsIKfw
 
 Post {{SocialMediaAPI_HostAddress}}/api/users/register
 Content-Type: application/json
@@ -14,7 +14,7 @@ Content-Type: application/json
 Post {{SocialMediaAPI_HostAddress}}/api/users/login
 Content-Type: application/json
 {
-  "email": "keroNabil",
+  "email": "k",
   "password": "Password1!"
 }
 ###
@@ -146,4 +146,22 @@ Authorization: Bearer {{token}}
 
 GET {{SocialMediaAPI_HostAddress}}/api/search/users?SearchPhase=oN
 Authorization: Bearer {{token}}
+###
+
+POST {{SocialMediaAPI_HostAddress}}/api/admin/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "UserId" : "de594ce8-40f8-45d2-b04a-636338a59b18",
+  "RoleName" : "User"
+}
+###
+
+DELETE {{SocialMediaAPI_HostAddress}}/api/admin/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "UserId" : "de594ce8-40f8-45d2-b04a-636338a59b18",
+  "RoleName" : "User"
+}
 ###
