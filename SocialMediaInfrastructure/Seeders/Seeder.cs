@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SocialMediaDomain.Constants;
 using SocialMediaInfrastructure.Persistence;
 
@@ -8,6 +9,11 @@ internal class Seeder(SocialMediaDbContext dbContext) : ISeeder
 {
     public async Task Seed()
     {
+        if (dbContext.Database.GetPendingMigrations().Any())
+        {
+            await dbContext.Database.MigrateAsync();
+        }
+
         if (dbContext.Database.CanConnect())
         {
             if (!dbContext.Roles.Any())
