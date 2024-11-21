@@ -28,7 +28,7 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
         {
             logger.LogWarning(ex.Message);
 
-            context.Response.StatusCode = 404;
+            context.Response.StatusCode = 400;
             await context.Response.WriteAsJsonAsync(new { error = ex.Message });
         }
         catch (Exception ex)

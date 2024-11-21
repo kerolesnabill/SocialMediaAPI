@@ -6,7 +6,7 @@ using SocialMediaDomain.Entities;
 using Xunit;
 using Assert = Xunit.Assert;
 
-namespace SocialMediaApplication.Posts.Dtos;
+namespace SocialMediaApplicationTests.Posts.Dtos;
 
 public class PostsProfileTests
 {

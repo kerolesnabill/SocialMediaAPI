@@ -48,6 +48,14 @@ public class ErrorHandlingMiddlewareTests
     }
 
     [Fact()]
+    public async Task InvokeAsync_WhenIncorrectExceptionThrown_SetStatusCodeTo403()
+    {
+        await _middleware.InvokeAsync(_httpContext, _ => throw new IncorrectException("Password"));
+
+        Assert.Equal(400, _httpContext.Response.StatusCode);
+    }
+
+    [Fact()]
     public async Task InvokeAsync_WhenGeneralExceptionThrown_SetStatusCodeTo500()
     {
         await _middleware.InvokeAsync(_httpContext, _ => throw new Exception());

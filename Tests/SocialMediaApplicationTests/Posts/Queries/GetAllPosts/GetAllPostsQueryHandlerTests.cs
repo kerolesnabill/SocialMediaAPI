@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Moq;
-using SocialMediaApplication.Common;
 using SocialMediaApplication.Posts.Dtos;
 using SocialMediaApplication.Posts.Queries.GetAllPosts;
 using SocialMediaDomain.Entities;

@@ -5,7 +5,7 @@ using System.Security.Claims;
 using Xunit;
 using Assert = Xunit.Assert;
 
-namespace SocialMediaApplication.Users;
+namespace SocialMediaApplicationTests.Users;
 
 public class UserContextTests
 {

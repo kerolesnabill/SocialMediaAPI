@@ -25,7 +25,7 @@ public class DeletePostCommandHandlerTests
         _postsRepository = new Mock<IPostsRepository>();
         _postAuthorizationService = new Mock<IPostAuthorizationService>();
         _userContext = new Mock<IUserContext>();
-        var currentUser = new CurrentUser("authorId", "test@test.com", "username");
+        var currentUser = new CurrentUser("authorId", "test@test.com", "username", []);
         _userContext.Setup(u => u.GetCurrentUser()).Returns(currentUser);
 
         _handler = new DeletePostCommandHandler(

@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using SocialMediaApplication.Posts.Commands.UpdatePost;
 using SocialMediaApplication.Users;
+using SocialMediaApplicationTests.Posts.Commands.UpdatePost;
+using SocialMediaApplicationTests.Users;
 using SocialMediaDomain.Constants;
 using SocialMediaDomain.Entities;
 using SocialMediaDomain.Exceptions;
@@ -30,7 +32,7 @@ public class UpdatePostCommandHandlerTests
             _userContext.Object,
             _mapper.Object);
 
-        var currentUser = new CurrentUser("AuthorId", "test@test.com", "username");
+        var currentUser = new CurrentUser("AuthorId", "test@test.com", "username", []);
         _userContext.Setup(u => u.GetCurrentUser()).Returns(currentUser);
     }
 

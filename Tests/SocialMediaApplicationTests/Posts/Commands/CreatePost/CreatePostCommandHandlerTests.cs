@@ -28,7 +28,7 @@ public class CreatePostCommandHandlerTests
         postRepository.Setup(repo => repo.Create(It.IsAny<Post>())).ReturnsAsync(1);
 
         var userContext = new Mock<IUserContext>();
-        var currentUser = new CurrentUser("authorId", "test@test.com", "username");
+        var currentUser = new CurrentUser("authorId", "test@test.com", "username", []);
         userContext.Setup(u => u.GetCurrentUser()).Returns(currentUser);
 
         var postAuthorizationService = new Mock<IPostAuthorizationService>();

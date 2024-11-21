@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Moq;
-using SocialMediaApplication.Posts.Dtos;
-using SocialMediaApplication.Posts.Queries.GetPostById;
 using SocialMediaDomain.Entities;
 using SocialMediaDomain.Interfaces;
 using SocialMediaDomain.Exceptions;
 using Xunit;
 using Assert = Xunit.Assert;
+using SocialMediaApplication.Posts.Queries.GetPostById;
+using SocialMediaApplication.Posts.Dtos;
 
 namespace SocialMediaApplicationTests.Posts.Queries.GetPostById;
 
