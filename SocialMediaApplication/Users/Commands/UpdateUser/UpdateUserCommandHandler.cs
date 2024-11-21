@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using SocialMediaDomain.Constants;
 using SocialMediaDomain.Entities;
 using SocialMediaDomain.Exceptions;
 using SocialMediaDomain.Interfaces;
@@ -9,6 +10,7 @@ using SocialMediaDomain.Interfaces;
 namespace SocialMediaApplication.Users.Commands.UpdateUser;
 
 public class UpdateUserCommandHandler(ILogger<UpdateUserCommandHandler> logger,
+        IBlobStorageService blobStorageService,
         IUsersRepository usersRepository,
         UserManager<User> userManager,
         IUserContext userContext,
@@ -23,6 +25,17 @@ public class UpdateUserCommandHandler(ILogger<UpdateUserCommandHandler> logger,
             ?? throw new NotFoundException(nameof(User), currentUser.Id);
 
         mapper.Map(request, user);
+
+        if (request.Picture != null) 
+        {
+            using var stream = request.Picture.OpenReadStream();
+            string filename = $"user-{user.Id}-{DateTime.Now.GetHashCode()}.jpeg";
+
+            var pictureUrl = await blobStorageService.UploadToBlobAsync
+                (stream, filename, ContainerName.UsersContainerName);
+
+            user.Picture = pictureUrl;
+        }
 
         await usersRepository.UpdateAsync(user);
     }

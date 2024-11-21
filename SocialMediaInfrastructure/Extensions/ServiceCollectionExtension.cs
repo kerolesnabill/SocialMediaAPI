@@ -8,6 +8,7 @@ using SocialMediaInfrastructure.Persistence;
 using SocialMediaInfrastructure.Repositories;
 using SocialMediaInfrastructure.Seeders;
 using SocialMediaInfrastructure.Services;
+using SocialMediaInfrastructure.Storage;
 
 namespace SocialMediaInfrastructure.Extensions;
 
@@ -31,5 +32,7 @@ public static class ServiceCollectionExtension
         services.AddScoped<ICommentAuthorizationService, CommentAuthorizationService>();
 
         services.AddScoped<ISeeder, Seeder>();
+
+        services.AddScoped<IBlobStorageService, BlobStorageService>();
     }
 }
