@@ -14,8 +14,7 @@ public class PostsProfile : Profile
                 options.MapFrom(c => new PostContent
                 {
                     Title = c.Title,
-                    Description = c.Description,
-                    Images = c.Images,
+                    Description = c.Description
                 }));
 
         CreateMap<UpdatePostCommand, Post>()
@@ -24,7 +23,6 @@ public class PostsProfile : Profile
                 {
                     Title = c.Title,
                     Description = c.Description,
-                    Images = c.Images,
                 }));
 
         CreateMap<Post, PostDto>()

@@ -21,7 +21,7 @@ public class PostsController(IMediator mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
+    public async Task<IActionResult> CreatePost(CreatePostCommand command)
     {
         var id = await mediator.Send(command);
         return CreatedAtAction(nameof(GetPostById), new { id }, null);

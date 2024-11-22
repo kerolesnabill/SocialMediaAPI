@@ -11,6 +11,7 @@ namespace SocialMediaApplication.Posts.Commands.CreatePost;
 
 public class CreatePostCommandHandler(ILogger<CreatePostCommandHandler> logger, 
         IPostAuthorizationService postAuthorizationService,
+        IBlobStorageService blobStorageService,
         IPostsRepository postsRepository, 
         IUserContext userContext,
         IMapper mapper) : IRequestHandler<CreatePostCommand, int>
@@ -27,6 +28,22 @@ public class CreatePostCommandHandler(ILogger<CreatePostCommandHandler> logger,
         bool isAuthorized = postAuthorizationService.Authorize(post, ResourceOperation.Create);
         if (!isAuthorized)
             throw new ForbidException();
+
+        if(request.Images != null && request.Images.Count > 0)
+        {
+            post.Content.Images = [];
+            int x = DateTime.Now.GetHashCode();
+
+            foreach (var image in request.Images)
+            {
+                string filename = $"post-user-{user.Id}-{x++}";
+                var stream = image.OpenReadStream();
+
+                string imageUrl = await blobStorageService.UploadToBlobAsync
+                    (stream, filename, ContainerName.PostsContainerName);
+                post.Content.Images.Add(imageUrl);
+            }
+        }
 
         var postId = await postsRepository.Create(post);
         return postId;
