@@ -34,9 +34,12 @@ public class CreatePostCommandHandlerTests
         var postAuthorizationService = new Mock<IPostAuthorizationService>();
         postAuthorizationService.Setup(s => s.Authorize(post, ResourceOperation.Create)).Returns(true);
 
+        Mock<IBlobStorageService> blobStorageService = new();
+
         var handler = new CreatePostCommandHandler(
             logger.Object,
             postAuthorizationService.Object,
+            blobStorageService.Object,
             postRepository.Object,
             userContext.Object,
             mapper.Object

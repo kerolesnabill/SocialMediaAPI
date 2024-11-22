@@ -3,7 +3,9 @@
 public class Post
 {
     public int Id { get; set; }
-    public PostContent Content { get; set; } = default!;
+    public string Content { get; set; } = default!;
+    public List<string>? Images { get; set; }
+
     public DateTime? CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 

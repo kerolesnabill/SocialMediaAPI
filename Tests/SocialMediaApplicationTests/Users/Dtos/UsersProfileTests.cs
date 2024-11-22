@@ -66,8 +66,7 @@ public class UsersProfileTests
         var user = new UpdateUserCommand()
         {
             FullName = "Test Test",
-            Bio = "bio .. ..",
-            Picture = "image.jpg"
+            Bio = "bio .. .."
         };
 
         var result = _mapper.Map<User>(user);
@@ -75,6 +74,5 @@ public class UsersProfileTests
         Assert.NotNull(result);
         Assert.Equal(user.FullName, result.FullName);
         Assert.Equal(user.Bio, result.Bio);
-        Assert.Equal(user.Picture, result.Picture);
     }
 }

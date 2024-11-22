@@ -14,9 +14,6 @@ internal class SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> optio
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Post>()
-            .OwnsOne(p => p.Content);
-
         modelBuilder.Entity<User>()
             .HasMany(u => u.Posts)
             .WithOne(p => p.Author)

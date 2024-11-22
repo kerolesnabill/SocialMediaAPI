@@ -31,7 +31,7 @@ public class CreatePostCommandHandler(ILogger<CreatePostCommandHandler> logger,
 
         if(request.Images != null && request.Images.Count > 0)
         {
-            post.Content.Images = [];
+            post.Images = [];
             int x = DateTime.Now.GetHashCode();
 
             foreach (var image in request.Images)
@@ -41,7 +41,7 @@ public class CreatePostCommandHandler(ILogger<CreatePostCommandHandler> logger,
 
                 string imageUrl = await blobStorageService.UploadToBlobAsync
                     (stream, filename, ContainerName.PostsContainerName);
-                post.Content.Images.Add(imageUrl);
+                post.Images.Add(imageUrl);
             }
         }
 

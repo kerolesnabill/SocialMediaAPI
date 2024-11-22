@@ -50,16 +50,13 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
         _postRepository.Setup(r => r.Create(It.IsAny<Post>())).ReturnsAsync(1);
 
         var client = _factory.CreateClient();
-        var newPost = new CreatePostCommand
+
+        var formData = new MultipartFormDataContent
         {
-            Title = "Test Post",
-            Description = "This is a test post."
+            { new StringContent("Post Content"), "Content" }
         };
-        var jsonContent = JsonConvert.SerializeObject(newPost);
-        var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-
-        var response = await client.PostAsync("api/posts", httpContent);
+        var response = await client.PostAsync($"api/posts", formData);
 
         Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
@@ -131,11 +128,7 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
         _postRepository.Setup(r => r.UpdateAsync(post));
 
         var client = _factory.CreateClient();
-        var command = new UpdatePostCommand
-        {
-            Title = "Test Post",
-            Description = "This is a test post."
-        };
+        var command = new UpdatePostCommand() { Content = "Post Content"};
         var jsonContent = JsonConvert.SerializeObject(command);
         var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 

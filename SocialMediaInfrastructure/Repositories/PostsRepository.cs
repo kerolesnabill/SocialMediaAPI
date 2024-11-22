@@ -34,9 +34,7 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         searchPhase = searchPhase?.ToLower();
 
         var baseQuery = dbContext.Posts
-            .Where(p => searchPhase == null ||
-                   (p.Content.Title != null && p.Content.Title.ToLower().Contains(searchPhase)) ||
-                   (p.Content.Description != null && p.Content.Description.ToLower().Contains(searchPhase)));
+            .Where(p => searchPhase == null || p.Content.ToLower().Contains(searchPhase));
 
         var totalCount = await baseQuery.CountAsync();
 
@@ -55,9 +53,8 @@ internal class PostsRepository(SocialMediaDbContext dbContext) : IPostsRepositor
         searchPhase = searchPhase?.ToLower();
 
         var baseQuery = dbContext.Posts
-            .Where(p => followingIds.Contains(p.AuthorId) && (searchPhase == null ||
-                   (p.Content.Title != null && p.Content.Title.ToLower().Contains(searchPhase)) ||
-                   (p.Content.Description != null && p.Content.Description.ToLower().Contains(searchPhase))))
+            .Where(p => followingIds.Contains(p.AuthorId) && 
+                (searchPhase == null || p.Content.ToLower().Contains(searchPhase)))
             .OrderByDescending(p => p.CreatedAt);
 
         var totalCount = await baseQuery.CountAsync();

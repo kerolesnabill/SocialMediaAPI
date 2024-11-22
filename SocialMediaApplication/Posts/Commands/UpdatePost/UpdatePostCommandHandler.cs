@@ -29,6 +29,7 @@ public class UpdatePostCommandHandler(ILogger<UpdatePostCommandHandler> logger,
             throw new ForbidException();
 
         mapper.Map(request, post);
+        post.UpdatedAt = DateTime.Now;
 
         await postsRepository.UpdateAsync(post);
     }

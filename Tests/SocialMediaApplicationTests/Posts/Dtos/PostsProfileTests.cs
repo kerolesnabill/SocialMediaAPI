@@ -25,37 +25,23 @@ public class PostsProfileTests
     [Fact()]
     public void CreateMap_ForCreatePostCommandToPost_MapsCorrectly()
     {
-        var command = new CreatePostCommand()
-        {
-            Title = "Title",
-            Description = "Description",
-            Images  = ["image1", "image2"]
-        };
+        var command = new CreatePostCommand() { Content = "Content" };
 
         var result = _mapper.Map<Post>(command);
 
         Assert.NotNull(result);
-        Assert.Equal(command.Title, result.Content.Title);
-        Assert.Equal(command.Description, result.Content.Description);
-        Assert.Equal(command.Images, result.Content.Images);
+        Assert.Equal(command.Content, result.Content);
     }
 
     [Fact()]
     public void CreateMap_ForUpdatePostCommandToPost_MapsCorrectly()
     {
-        var command = new UpdatePostCommand()
-        {
-            Title = "Title",
-            Description = "Description",
-            Images = ["image1", "image2"]
-        };
+        var command = new UpdatePostCommand() { Content = "NewContent" };
 
         var result = _mapper.Map<Post>(command);
 
         Assert.NotNull(result);
-        Assert.Equal(command.Title, result.Content.Title);
-        Assert.Equal(command.Description, result.Content.Description);
-        Assert.Equal(command.Images, result.Content.Images);
+        Assert.Equal(command.Content, result.Content);
     }
 
     [Fact()]
@@ -64,12 +50,7 @@ public class PostsProfileTests
         var post = new Post()
         { 
             Id = 1,
-            Content = new PostContent()
-            {
-                Title = "Title",
-                Description = "Description",
-                Images = ["img1", "img2"]
-            },
+            Content = "Content",
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now.AddDays(1),
             AuthorId = "authorId"
@@ -82,8 +63,6 @@ public class PostsProfileTests
         Assert.Equal(post.CreatedAt, result.CreatedAt);
         Assert.Equal(post.UpdatedAt, result.UpdatedAt);
         Assert.Equal(post.AuthorId, result.AuthorId);
-        Assert.Equal(post.Content.Title, result.Title);
-        Assert.Equal(post.Content.Description, result.Description);
-        Assert.Equal(post.Content.Images, result.Images);
+        Assert.Equal(post.Content, result.Content);
     }
 }

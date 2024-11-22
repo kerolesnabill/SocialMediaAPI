@@ -1,13 +1,11 @@
-﻿using SocialMediaDomain.Entities;
-
-namespace SocialMediaApplication.Posts.Dtos;
+﻿namespace SocialMediaApplication.Posts.Dtos;
 
 public class PostDto
 {
     public int Id { get; set; }
-    public string? Title { get; set; }
-    public string? Description { get; set; }
+    public string Content { get; set; } = default!;
     public IEnumerable<string>? Images { get; set; }
+
     public DateTime? CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 

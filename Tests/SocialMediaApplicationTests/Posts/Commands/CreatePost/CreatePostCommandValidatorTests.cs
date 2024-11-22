@@ -6,17 +6,10 @@ namespace SocialMediaApplicationTests.Posts.Commands.CreatePost;
 
 public class CreatePostCommandValidatorTests
 {
-    [Theory()]
-    [InlineData("title", "description")]
-    [InlineData("title", null)]
-    [InlineData(null, "description")]
-    public void Validator_ForValidCommand_ShouldNotHaveValidationErrors(string? title, string? description)
+    [Fact()]
+    public void Validator_ForValidCommand_ShouldNotHaveValidationErrors()
     {
-        var command = new CreatePostCommand()
-        {
-            Title = title,
-            Description = description,
-        };
+        var command = new CreatePostCommand(){ Content = "Post Content"};
         var validator = new CreatePostCommandValidator();
 
         var result = validator.TestValidate(command);
@@ -25,21 +18,15 @@ public class CreatePostCommandValidatorTests
     }
 
     [Theory()]
-    [InlineData("", "")]
-    [InlineData("  ", "  ")]
-    public void Validator_ForInvalidCommand_ShouldHaveValidationErrors(string? title, string? description)
+    [InlineData("")]
+    [InlineData("  ")]
+    public void Validator_ForInvalidCommand_ShouldHaveValidationErrors(string content)
     {
-        var command = new CreatePostCommand()
-        {
-            Title = title,
-            Description = description,
-        };
+        var command = new CreatePostCommand() { Content = content };
         var validator = new CreatePostCommandValidator();
 
         var result = validator.TestValidate(command);
 
-        result.ShouldHaveValidationErrorFor(p => p.Title);
-        result.ShouldHaveValidationErrorFor(p => p.Description);
-        result.ShouldHaveValidationErrorFor(p => p);
+        result.ShouldHaveValidationErrorFor(p => p.Content);
     }
 }
