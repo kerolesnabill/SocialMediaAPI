@@ -11,6 +11,7 @@ namespace SocialMediaApplication.Posts.Commands.UpdatePost;
 
 public class UpdatePostCommandHandler(ILogger<UpdatePostCommandHandler> logger,
         IPostAuthorizationService postAuthorizationService,
+        IBlobStorageService blobStorageService,
         IPostsRepository postsRepository,
         IUserContext userContext,
         IMapper mapper  
@@ -30,6 +31,22 @@ public class UpdatePostCommandHandler(ILogger<UpdatePostCommandHandler> logger,
 
         mapper.Map(request, post);
         post.UpdatedAt = DateTime.Now;
+
+        if (request.Images != null && request.Images.Count > 0)
+        {
+            post.Images = [];
+            int x = DateTime.Now.GetHashCode();
+
+            foreach (var image in request.Images)
+            {
+                string filename = $"post-user-{user.Id}-{x++}.jpeg";
+                var stream = image.OpenReadStream();
+
+                string imageUrl = await blobStorageService.UploadToBlobAsync
+                    (stream, filename, ContainerName.PostsContainerName);
+                post.Images.Add(imageUrl);
+            }
+        }
 
         await postsRepository.UpdateAsync(post);
     }

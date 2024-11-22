@@ -36,7 +36,7 @@ public class CreatePostCommandHandler(ILogger<CreatePostCommandHandler> logger,
 
             foreach (var image in request.Images)
             {
-                string filename = $"post-user-{user.Id}-{x++}";
+                string filename = $"post-user-{user.Id}-{x++}.jpeg";
                 var stream = image.OpenReadStream();
 
                 string imageUrl = await blobStorageService.UploadToBlobAsync

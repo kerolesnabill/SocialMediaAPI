@@ -18,6 +18,7 @@ public class UpdatePostCommandHandlerTests
 {
     private readonly Mock<ILogger<UpdatePostCommandHandler>> _logger = new();
     private readonly Mock<IPostAuthorizationService> _postAuthorizationService = new();
+    private readonly Mock<IBlobStorageService> _blobStorageService = new();
     private readonly Mock<IPostsRepository> _postRepository = new();
     private readonly Mock<IUserContext> _userContext = new();
     private readonly Mock<IMapper> _mapper = new();
@@ -28,6 +29,7 @@ public class UpdatePostCommandHandlerTests
         _handler = new UpdatePostCommandHandler(
             _logger.Object,
             _postAuthorizationService.Object,
+            _blobStorageService.Object,
             _postRepository.Object,
             _userContext.Object,
             _mapper.Object);

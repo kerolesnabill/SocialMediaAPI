@@ -63,13 +63,13 @@ public class PostsController(IMediator mediator) : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
+    [HttpPatch("{id}")]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdatePost([FromRoute] int id, UpdatePostCommand command)
+    public async Task<IActionResult> UpdatePost([FromRoute] int id, [FromForm] UpdatePostCommand command)
     {
         command.Id = id;
         await mediator.Send(command);

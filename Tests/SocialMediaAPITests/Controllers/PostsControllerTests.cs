@@ -128,11 +128,13 @@ public class PostsControllerTests : IClassFixture<WebApplicationFactory<Program>
         _postRepository.Setup(r => r.UpdateAsync(post));
 
         var client = _factory.CreateClient();
-        var command = new UpdatePostCommand() { Content = "Post Content"};
-        var jsonContent = JsonConvert.SerializeObject(command);
-        var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-        var response = await client.PutAsync($"api/posts/{id}", httpContent);
+        var formData = new MultipartFormDataContent
+        {
+            { new StringContent("Post Content"), "Content" }
+        };
+
+        var response = await client.PatchAsync($"api/posts/{id}", formData);
 
         Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
